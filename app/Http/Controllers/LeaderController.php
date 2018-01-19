@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Leader;
-use App\Roles;
+use App\Module;
+use App\Role;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -10,10 +11,13 @@ class LeaderController extends Controller
 {
     public function index()
     {
+
         $this->authorize('view',Leader::class);
-        $model = new Roles();
-        $roles = $model->user_roles()->toArray();
-        return view('leader.index',compact('roles'));
+        $model = new Role();
+        $collection = $model->getRoles();
+        $modules = $collection->groupBy('module');
+
+        return view('leader.index',compact('modules'));
     }
 
     public function edit()

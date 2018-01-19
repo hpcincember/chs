@@ -3,7 +3,7 @@
 namespace App\Policies;
 
 use App\User;
-use App\Roles;
+use App\Role;
 use App\Helpers\Helper;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -20,7 +20,7 @@ class LeaderPolicy
     private $helper;
     public function __construct()
     {
-        $this->roles = new Roles();
+        $this->roles = new Role();
         $this->helper = new Helper();
 
     }
