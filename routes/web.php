@@ -20,3 +20,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/leaders', 'LeaderController@index')->name('leader');
 Route::get('/leaders/edit', 'LeaderController@edit');
+
+Route::get('/roles','RoleController@index');

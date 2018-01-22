@@ -16,7 +16,6 @@ class LeaderController extends Controller
         $model = new Role();
         $collection = $model->getRoles();
         $modules = $collection->groupBy('module');
-
         return view('leader.index',compact('modules'));
     }
 

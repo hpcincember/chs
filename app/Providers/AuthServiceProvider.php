@@ -3,9 +3,11 @@
 namespace App\Providers;
 
 use App\Policies\LeaderPolicy;
+use App\Policies\RolePolicy;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use App\Leader;
+use App\Role;
 class AuthServiceProvider extends ServiceProvider
 {
     /**
@@ -15,7 +17,8 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         'App\Model' => 'App\Policies\ModelPolicy',
-        Leader::class => LeaderPolicy::class
+        Leader::class => LeaderPolicy::class,
+        Role::class => RolePolicy::class
     ];
 
     /**
