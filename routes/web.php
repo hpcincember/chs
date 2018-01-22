@@ -18,7 +18,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
 Route::get('/leaders', 'LeaderController@index')->name('leader');
-Route::get('/leaders/edit', 'LeaderController@edit');
+Route::get('/leaders/data', 'LeaderController@leaderData')->name('leader.data');
+
+Route::get('/leader/edit/{leader}', 'LeaderController@edit');
 
 Route::get('/roles','RoleController@index');

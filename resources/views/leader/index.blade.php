@@ -1,89 +1,68 @@
 @extends('layouts.app')
 @section('headers')
-    <style>
-        body {
-            background:white;
-            font:normal normal 13px/1.4 Segoe,"Segoe UI",Calibri,Helmet,FreeSans,Sans-Serif;
-            padding:50px;
-        }
-
-
-        /**
-         * Framework starts from here ...
-         * ------------------------------
-         */
-
-        .tree,
-        .tree ul {
-            margin:0 0 0 1em; /* indentation */
-            padding:0;
-            list-style:none;
-            color:#369;
-            position:relative;
-        }
-
-        .tree ul {margin-left:.5em} /* (indentation/2) */
-
-        .tree:before,
-        .tree ul:before {
-            content:"";
-            display:block;
-            width:0;
-            position:absolute;
-            top:0;
-            bottom:0;
-            left:0;
-            border-left:1px solid;
-        }
-
-        .tree li {
-            margin:0;
-            padding:0 1.5em; /* indentation + .5em */
-            line-height:2em; /* default list item's `line-height` */
-            font-weight:bold;
-            position:relative;
-        }
-
-        .tree li:before {
-            content:"";
-            display:block;
-            width:10px; /* same with indentation */
-            height:0;
-            border-top:1px solid;
-            margin-top:-1px; /* border top width */
-            position:absolute;
-            top:1em; /* (line-height/2) */
-            left:0;
-        }
-
-        .tree li:last-child:before {
-            background:white; /* same with body background */
-            height:auto;
-            top:1em; /* (line-height/2) */
-            bottom:0;
-        }
-    </style>
 @endsection
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
+            <div class="col-md-12">
+                <div class="panel panel-default table-responsive">
                     <div class="panel-heading">Leaders</div>
-                    <div class="panel-body tree">
-                        <ul class="tree">
-                            @foreach($modules as $module => $roles)
-                                <li>{{$module}}</li>
-                                <ul>
-                                    @foreach($roles as $role)
-                                        <li>{{$role->operation}}</li>
-                                    @endforeach
-                                </ul>
-                            @endforeach
-                        </ul>
+                    <div class="panel-body">
+                        <table class="table table-hover table-bordered datatable" style="width:100%">
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>First Name</th>
+                                <th>Middle Name</th>
+                                <th>Last Name</th>
+                                <th>Suffix</th>
+                                <th>School</th>
+                                <th>Work</th>
+                                <th>Contact Number</th>
+                                <th>Facebook Account</th>
+                                <th>Email Address</th>
+                                <th>Network</th>
+                                <th>Gender</th>
+                                <th>Level</th>
+                                <th>Birth Date</th>
+                                <th>First Attend</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+@endsection
+@section('scripts')
+    <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.datatable').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: '{{ route('leader.data') }}',
+                columns: [
+                    {data: 'id', name: 'id'},
+                    {data: 'first_name', name: 'first_name'},
+                    {data: 'middle_name', name: 'middle_name'},
+                    {data: 'last_name', name: 'last_name'},
+                    {data: 'suffix', name: 'suffix'},
+                    {data: 'school', name: 'school'},
+                    {data: 'work_place', name: 'work_place'},
+                    {data: 'contact_number', name: 'contact_number'},
+                    {data: 'fb_account', name: 'fb_account'},
+                    {data: 'email_address', name: 'email_address'},
+                    {data: 'network', name: 'network'},
+                    {data: 'gender_name', name: 'gender'},
+                    {data: 'level', name: 'level'},
+                    {data: 'birth_date', name: 'birth_date'},
+                    {data: 'first_attend', name: 'first_attend'},
+                    { data: 'action', name: 'action', orderable: false, searchable: false}
+                ]
+            });
+        });
+    </script>
 @endsection
