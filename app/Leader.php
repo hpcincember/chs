@@ -31,6 +31,12 @@ class Leader extends Model
         return $networkName['name'];
     }
 
+    public function getCellGroupAttribute($cellGroup)
+    {
+        $cellGroupName =  CellGroup::find($cellGroup);
+        return $cellGroupName['name'];
+    }
+
     public function  getFbAccountAttributes($fbAccount)
     {
         return "https://www.facebook.com/".$fbAccount;

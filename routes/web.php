@@ -23,5 +23,6 @@ Route::get('/leaders', 'LeaderController@index')->name('leader');
 Route::get('/leaders/data', 'LeaderController@leaderData')->name('leader.data');
 
 Route::get('/leader/edit/{leader}', 'LeaderController@edit');
+Route::patch('/leader/update/{leader}','LeaderController@update')->name('leader.update');
 
 Route::get('/roles','RoleController@index');

@@ -56,7 +56,7 @@
                     {data: 'fb_account', name: 'fb_account'},
                     {data: 'email_address', name: 'email_address'},
                     {data: 'network', name: 'network'},
-                    {data: 'gender_name', name: 'gender'},
+                    {data: 'gender', name: 'gender'},
                     {data: 'level', name: 'level'},
                     {data: 'birth_date', name: 'birth_date'},
                     {data: 'first_attend', name: 'first_attend'},

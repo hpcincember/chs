@@ -16,6 +16,17 @@ class Helper
         return [self::FEMALE => 'Female', self::MALE => 'Male'];
     }
 
+    public static function getAllLevels()
+    {
+        return [
+            self::PASTOR => "Pastor/Pastor's Wife",
+            self::PRIMARY => "Primary Leaders",
+            self::ONE_FOUR_FOUR => "144 Leaders",
+            self::ONE_SEVEN_TWO_EIGHT => "1728 Leaders",
+            self::TWENTY_THOUSAND => "20,000 Leaders"
+        ];
+    }
+
     public function checkPermission($operation, $array)
     {
         $array = $array->toArray();

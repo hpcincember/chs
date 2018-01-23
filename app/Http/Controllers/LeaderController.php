@@ -32,10 +32,17 @@ class LeaderController extends Controller
     public function edit(Leader $leader)
     {
 //        dd($leader);
+        $this->authorize('edit',Leader::class);
         $network = new Cellgroup();
         $genders = Helper::getAllGender();
+        $levels = Helper::getAllLevels();
         $networks = $network->findNetworks();
-        $this->authorize('edit',Leader::class);
-        return view('leader.edit',compact('leader','genders','networks'));
+        return view('leader.edit',compact('leader','genders','networks','levels'));
+    }
+
+    public function update(Leader $leader,Request $request)
+    {
+        dd($request->request);
+
     }
 }
