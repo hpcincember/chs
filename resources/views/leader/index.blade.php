@@ -5,9 +5,12 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
+
                 <div class="panel panel-default table-responsive">
                     <div class="panel-heading">Leaders</div>
                     <div class="panel-body">
+                        <a href="{{ route('leader.create') }}" role="button" class="btn btn-primary btn-sm">Create</a>
+                        <hr>
                         <table class="table table-hover table-bordered datatable" style="width:100%">
                             <thead>
                             <tr>
@@ -60,7 +63,7 @@
                     {data: 'level', name: 'level'},
                     {data: 'birth_date', name: 'birth_date'},
                     {data: 'first_attend', name: 'first_attend'},
-                    { data: 'action', name: 'action', orderable: false, searchable: false}
+                    {data: 'action', name: 'action', orderable: false, searchable: false}
                 ]
             });
         });

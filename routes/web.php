@@ -22,7 +22,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/leaders', 'LeaderController@index')->name('leader');
 Route::get('/leaders/data', 'LeaderController@leaderData')->name('leader.data');
 
+Route::get('/leader/create', 'LeaderController@create')->name('leader.create');
+Route::post('/leader', 'LeaderController@store');
 Route::get('/leader/edit/{leader}', 'LeaderController@edit');
-Route::patch('/leader/update/{leader}','LeaderController@update')->name('leader.update');
+Route::patch('/leader/{leader}','LeaderController@update');
+Route::delete('/leader/{leader}','LeaderController@delete')->name('leader.delete');
 
 Route::get('/roles','RoleController@index');
