@@ -9,9 +9,17 @@ class RoleController extends Controller
     public function index()
     {
         $this->authorize('view',Role::class);
+        return view('role.index');
+       
+    }
+
+    public function rolesData()
+    {
+        $this->authorize('view',Role::class);
         $model = new Role();
-        $collection = $model->getRoles();
-        $modules = $collection->groupBy('module');
-        return view('role.index',compact('modules'));
+        $roles = $model->getRoles();
+        return response()->json([
+            'data'    => $roles,
+        ], 200);
     }
 }

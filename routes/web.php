@@ -15,6 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/sample', function () {
+    return view('sample');
+});
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -29,3 +34,4 @@ Route::patch('/leader/{leader}','LeaderController@update');
 Route::delete('/leader/{leader}','LeaderController@delete')->name('leader.delete');
 
 Route::get('/roles','RoleController@index');
+Route::get('/roles-data','RoleController@rolesData');
