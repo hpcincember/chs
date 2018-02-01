@@ -23,8 +23,7 @@ class Role extends Model
     {
         return DB::table('modules')
             ->leftJoin('roles','modules.id','=','roles.module_id')
-            ->select('modules.name as module','roles.operation')
-            ->get();
+            ->select('modules.name as module','roles.operation');
     }
 
 }

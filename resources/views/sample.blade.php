@@ -1,5 +1,5 @@
 @extends('layouts.app')
 
 @section('content')
-   <vtable></vtable>
+   <example></example>
 @endsection

@@ -17,9 +17,7 @@ class RoleController extends Controller
     {
         $this->authorize('view',Role::class);
         $model = new Role();
-        $roles = $model->getRoles();
-        return response()->json([
-            'data'    => $roles,
-        ], 200);
+        $roles = $model->getRoles()->paginate(10);
+        return $roles;
     }
 }

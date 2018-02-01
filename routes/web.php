@@ -19,6 +19,10 @@ Route::get('/sample', function () {
     return view('sample');
 });
 
+Route::get('users', function () {
+    return App\User::paginate();
+});
+
 
 Auth::routes();
 
