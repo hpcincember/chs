@@ -11,16 +11,18 @@
           <vuetable ref="vuetable"
         api-url="http://127.0.0.1:8000/roles-data"
         :fields="fields"
-        pagination-path=""
+          pagination-path=""
         @vuetable:pagination-data="onPaginationData"
       ></vuetable>
    <vuetable-pagination ref="pagination"  @vuetable-pagination:change-page="onChangePage"></vuetable-pagination>
+    <p>Envelope icon: <span class="glyphicon glyphicon-envelope"></span></p> 
                     </div>
    
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
 </template>
 
@@ -61,7 +63,10 @@ export default {
     },
     onChangePage (page) {
       this.$refs.vuetable.changePage(page)
+    },
     }
-  }
+
+    
+
 }
 </script>

@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Pagination\LengthAwarePaginator as Paginator;
 use Illuminate\Http\Request;
+use Response;
 use App\Role;
+use DB;
 class RoleController extends Controller
 {
     public function index()
@@ -17,7 +19,6 @@ class RoleController extends Controller
     {
         $this->authorize('view',Role::class);
         $model = new Role();
-        $roles = $model->getRoles()->paginate(10);
-        return $roles;
+        return $roles = $model->getRoles()->paginate(3);
     }
 }

@@ -20,7 +20,8 @@ Route::get('/sample', function () {
 });
 
 Route::get('users', function () {
-    return App\User::paginate();
+    $user = App\User::paginate(5);
+    return response()->json($user);
 });
 
 
