@@ -40,3 +40,4 @@ Route::delete('/leader/{leader}','LeaderController@delete')->name('leader.delete
 
 Route::get('/roles','RoleController@index');
 Route::get('/roles-data','RoleController@rolesData');
+Route::get('/role/show/{role}','RoleController@show');

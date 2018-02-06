@@ -3,7 +3,12 @@
       <div class="row">
          <div class="col-md-12">
             <div class="panel panel-default">
-               <div class="panel-heading">Example Component</div>
+               <div class="panel-heading">
+                 <div class="btn-group pull-right">
+                    <a href="#" class="btn btn-primary btn-sm" @click="openModal">Create</a>
+                </div>
+                Example Component
+               </div>
                <div class="panel-body">
                   <div>
                      <vuetable ref="vuetable"
@@ -23,8 +28,17 @@
                     <div id="wrapper" class="container"> 
                        <modal v-if="showModal"> 
                         <h3 slot="header" class="modal-title">
-                          Modal title
+                            Create New Role
                         </h3>
+                        <div slot="body">
+                            <div class="form-group">
+                                <input type="text" class="form-control">
+                            </div>
+                             <div class="form-group">
+                                <input type="text" class="form-control">
+                            </div>
+                          
+                        </div>
                           
                         <div slot="footer">
                          <button type="button" class="btn btn-outline-info" @click="closeModal()"> Close </button>
@@ -35,9 +49,6 @@
                       </modal>
                     </div>  
                   <!-- add end modal -->
-                   <div id="wrapper" class="container">
-                    <button type="button" class="btn btn-primary" @click="openModal()">Open Modal</button>
-                   </div>
                 
             </div>
          </div>
@@ -65,6 +76,10 @@
         return {
          showModal: false,
          fields: [
+           {
+             name: 'id',
+             title: 'Id'
+           },
            {
              name: 'module',
              title: 'Module'

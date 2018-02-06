@@ -48430,6 +48430,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -48451,6 +48462,9 @@ __WEBPACK_IMPORTED_MODULE_3_vue___default.a.component('custom-actions', __WEBPAC
     return {
       showModal: false,
       fields: [{
+        name: 'id',
+        title: 'Id'
+      }, {
         name: 'module',
         title: 'Module'
       }, {
@@ -49084,7 +49098,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   methods: {
     itemAction: function itemAction(action, data, index) {
-      console.log('custom-actions: ' + action, data, index);
+      if (action == "view-item") {
+        this.view(index, data);
+      } else if (action == "edit-item") {
+        this.edit(index, data);
+      } else if (action == "delete-item") {
+        this.delete(index, data);
+      }
+    },
+    view: function view(index, data) {
+      axios.get('/role/show/' + data.id).then(function (response) {
+        console.log(response);
+      }).catch(function (error) {
+        console.log(error);
+      });
+    },
+    delete: function _delete(index, data) {
+      console.log(data);
+    },
+    edit: function edit(index, data) {
+      console.log(data);
     }
   }
 });
@@ -49161,7 +49194,18 @@ var render = function() {
       _c("div", { staticClass: "col-md-12" }, [
         _c("div", { staticClass: "panel panel-default" }, [
           _c("div", { staticClass: "panel-heading" }, [
-            _vm._v("Example Component")
+            _c("div", { staticClass: "btn-group pull-right" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "btn btn-primary btn-sm",
+                  attrs: { href: "#" },
+                  on: { click: _vm.openModal }
+                },
+                [_vm._v("Create")]
+              )
+            ]),
+            _vm._v("\n             Example Component\n            ")
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "panel-body" }, [
@@ -49213,10 +49257,26 @@ var render = function() {
                       },
                       [
                         _vm._v(
-                          "\n                       Modal title\n                     "
+                          "\n                         Create New Role\n                     "
                         )
                       ]
                     ),
+                    _vm._v(" "),
+                    _c("div", { attrs: { slot: "body" }, slot: "body" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("input", {
+                          staticClass: "form-control",
+                          attrs: { type: "text" }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("input", {
+                          staticClass: "form-control",
+                          attrs: { type: "text" }
+                        })
+                      ])
+                    ]),
                     _vm._v(" "),
                     _c("div", { attrs: { slot: "footer" }, slot: "footer" }, [
                       _c(
@@ -49255,23 +49315,7 @@ var render = function() {
                 : _vm._e()
             ],
             1
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "container", attrs: { id: "wrapper" } }, [
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-primary",
-                attrs: { type: "button" },
-                on: {
-                  click: function($event) {
-                    _vm.openModal()
-                  }
-                }
-              },
-              [_vm._v("Open Modal")]
-            )
-          ])
+          )
         ])
       ])
     ])

@@ -21,4 +21,12 @@ class RoleController extends Controller
         $model = new Role();
         return $roles = $model->getRoles()->paginate(3);
     }
+
+    public function show(Role $role)
+    {
+        return response()->json([
+            'role' => $role
+        ]);
+
+    }
 }
