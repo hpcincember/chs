@@ -10,16 +10,16 @@ class RoleController extends Controller
 {
     public function index()
     {
-        $this->authorize('view',Role::class);
+        // $this->authorize('view',Role::class);
         return view('role.index');
        
     }
 
     public function rolesData()
     {
-        $this->authorize('view',Role::class);
+        // $this->authorize('view',Role::class);
         $model = new Role();
-        return $roles = $model->getRoles()->paginate(3);
+        return $roles = $model->getRoles()->paginate(10);
     }
 
     public function show(Role $role)
@@ -28,5 +28,19 @@ class RoleController extends Controller
             'role' => $role
         ]);
 
+    }
+
+    public function store(Request $request)
+    {
+        $model = new Role;
+        $model->alias = $request->role;
+        $model->user_id = $request->user_id;
+        $model->module_id = $request->module_id;
+        $model->operation = $request->role;
+        $role =  $model->save();
+        return response()->json([
+            'role'    => $role,
+            'message' => 'Success'
+        ], 200);
     }
 }

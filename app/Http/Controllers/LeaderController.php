@@ -7,6 +7,7 @@ use App\Helpers\Helper;
 use App\Leader;
 use Auth;
 use DataTable;
+use DB;
 use Illuminate\Http\Request;
 
 class LeaderController extends Controller
@@ -59,17 +60,18 @@ class LeaderController extends Controller
 
     public function leaderData()
     {
-        $leader = Leader::all();
-        return \DataTables::of($leader)
-            ->addColumn('action', function ($leader) {
-                $deleteButton = ' <form action="leader/'.$leader->id.'" method="POST">
-                                    <input type="hidden" name="_method" value="delete">
-                                    <input type="hidden" name="_token" value="'.csrf_token().'">
-                                    <input type="submit" class="btn btn-sm btn-danger" value="Delete">
-                                    </form>';
-                return '<a href="leader/edit/' . $leader->id . '" class="btn btn-sm btn-primary">Edit</a>'.$deleteButton;
-            })
-            ->make(true);
+        // $leader = Leader::all();
+        // return \DataTables::of($leader)
+        //     ->addColumn('action', function ($leader) {
+        //         $deleteButton = ' <form action="leader/'.$leader->id.'" method="POST">
+        //                             <input type="hidden" name="_method" value="delete">
+        //                             <input type="hidden" name="_token" value="'.csrf_token().'">
+        //                             <input type="submit" class="btn btn-sm btn-danger" value="Delete">
+        //                             </form>';
+        //         return '<a href="leader/edit/' . $leader->id . '" class="btn btn-sm btn-primary">Edit</a>'.$deleteButton;
+        //     })
+        //     ->make(true);
+        return DB::table('leaders')->get();
     }
 
     public function edit(Leader $leader)

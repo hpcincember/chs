@@ -7,7 +7,7 @@
                  <div class="btn-group pull-right">
                     <a href="#" class="btn btn-primary btn-sm" @click="openModal">Create</a>
                 </div>
-                Example Component
+                Roles
                </div>
                <div class="panel-body">
                   <div>
@@ -32,17 +32,27 @@
                         </h3>
                         <div slot="body">
                             <div class="form-group">
-                                <input type="text" class="form-control">
+                                <label for="">Modules</label>
+                                 <select name="" id="" class="form-control" v-model="module_id"> 
+                                    <option :value="role.id" v-for="role in modules">{{ role.name }}</option>
+                                </select>
                             </div>
                              <div class="form-group">
-                                <input type="text" class="form-control">
+                                    <label for="role">Role</label>
+                                    <input type="text" name="" class="form-control" placeholder="Role" v-model="role">
+                            </div>
+                             <div class="form-group">
+                                <label for="">User ID</label>
+                                <select name="" id="" class="form-control" v-model="user_id">
+                                    <option :value="user.id" v-for="user in users"> {{ user.id }} - {{ user.first_name }} {{ user.last_name }}</option>
+                                </select>
                             </div>
                           
                         </div>
                           
                         <div slot="footer">
                          <button type="button" class="btn btn-outline-info" @click="closeModal()"> Close </button>
-                         <button type="button" class="btn btn-primary" data-dismiss="modal" @click="submitAndClose()">
+                         <button type="button" class="btn btn-primary" data-dismiss="modal" @click="createRole()">
                            Submit
                          </button>
                         </div>
@@ -75,6 +85,9 @@
      data() {
         return {
          showModal: false,
+         module_id: '',
+         user_id: '',
+         role: '',
          fields: [
            {
              name: 'id',
@@ -89,27 +102,61 @@
              title: 'operation'
            },
            {
+             name: 'user_id',
+             title: 'User ID'
+           },
+           {
              name: '__component:custom-actions',   // <----
              title: 'Actions',
            }
-         ]
+         ],
+         users: [],
+         modules: []
        }
+    
+     },
+     mounted(){
+        this.getModules();
+        this.getUsers();
      },
       methods: {
-       //...
-       onPaginationData (paginationData) {
-         this.$refs.pagination.setPaginationData(paginationData)
-         this.$refs.paginationInfo.setPaginationData(paginationData)  
-       },
-       onChangePage (page) {
-         this.$refs.vuetable.changePage(page)
-       },
-       openModal() {
-         this.showModal = true;
-       },
-       closeModal() {
-        this.showModal = false;
-       }
+         onPaginationData (paginationData) {
+           this.$refs.pagination.setPaginationData(paginationData)
+           this.$refs.paginationInfo.setPaginationData(paginationData)  
+         },
+         onChangePage (page) {
+           this.$refs.vuetable.changePage(page)
+         },
+         openModal() {
+           this.showModal = true;
+         },
+         closeModal() {
+          this.showModal = false;
+         },
+         getUsers() {
+            axios.get('/leaders-data')
+              .then(response => {
+                  this.users = response.data;
+              });
+         },
+         getModules() {
+             axios.get('/modules-data')
+              .then(response => {
+                  this.modules = response.data;
+              });
+         },
+         createRole() {
+              axios.post('/role', this.$data)
+                  .then(response => {
+                     this.showModal = false;
+                     this.user_id = "";
+                     this.module_id = "";
+                     this.role = "";
+                    this.$refs.vuetable.refresh()
+              })
+              .catch(error => {
+              });
+         }
        }
    
        
