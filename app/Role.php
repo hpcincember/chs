@@ -21,8 +21,8 @@ class Role extends Model
 
     public function getRoles()
     {
-        return DB::table('modules')
-            ->leftJoin('roles','modules.id','=','roles.module_id')
+        return DB::table('roles')
+            ->leftJoin('modules','modules.id','=','roles.module_id')
             ->select('roles.user_id','roles.id','modules.name as module','roles.operation');
     }
 

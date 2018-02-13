@@ -32,6 +32,11 @@ class RoleController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request,[
+            'role'=>'required',
+            'user_id'=>'required',
+            'module_id'=>'required'
+        ]);
         $model = new Role;
         $model->alias = $request->role;
         $model->user_id = $request->user_id;

@@ -23,8 +23,9 @@
     "vuetable-2": "^1.7.2"
   },
   "dependencies": {
-    "sweetalert": "^2.1.0",
+    "sweetalert2": "^7.11.0",
     "vue-good-table": "^1.19.1",
+    "vue-laravel-validator": "^1.0.4",
     "vuetable": "^1.5.12"
   }
 }

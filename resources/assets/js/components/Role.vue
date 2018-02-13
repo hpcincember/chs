@@ -16,7 +16,26 @@
                         :fields="fields"
                         pagination-path=""
                         @vuetable:pagination-data="onPaginationData"
-                        ></vuetable>
+                        >
+                           <template slot="actions" slot-scope="props"> 
+                              <div class="custom-actions">
+                                <button class="btn btn-primary btn-xs"
+                                  @click="onAction('view-item', props.rowData, props.rowIndex)">
+                                  View
+                                </button>
+                                <button class="btn btn-success btn-xs"
+                                  @click="onAction('edit-item', props.rowData, props.rowIndex)">
+                                  Edit
+                                </button>
+                                <button class="btn btn-danger btn-xs"
+                                  @click="onAction('delete-item', props.rowData, props.rowIndex)">
+                                  Delete
+                                </button>
+                              </div>
+                            </template>
+
+
+                        </vuetable>
                      <div class="vuetable-pagination ui basic segment grid">
                         <vuetable-pagination-info ref="paginationInfo"
                            ></vuetable-pagination-info>
@@ -59,7 +78,6 @@
                       </modal>
                     </div>  
                   <!-- add end modal -->
-                
             </div>
          </div>
       </div>
@@ -105,10 +123,12 @@
              name: 'user_id',
              title: 'User ID'
            },
-           {
-             name: '__component:custom-actions',   // <----
-             title: 'Actions',
-           }
+            {
+              name: '__slot:actions',   // <----
+              title: 'Actions',
+              titleClass: 'center aligned',
+              dataClass: 'center aligned'
+            }
          ],
          users: [],
          modules: []
@@ -152,14 +172,44 @@
                      this.user_id = "";
                      this.module_id = "";
                      this.role = "";
-                    this.$refs.vuetable.refresh()
+                    this.$refs.vuetable.reload()
+
               })
               .catch(error => {
+                this.showError(error.response.data)
               });
-         }
+         },
+          showError (message) {
+            var errorString = '';
+                for(var prop in message) {
+                    if (Array.isArray(prop)) {
+                        for (var msg in prop) {
+                            errorString += message[prop] + '<BR>';
+                        } 
+                    } 
+                    else {
+                      errorString += message[prop] + '<BR>';
+                    }
+                }
+
+              swal({
+                type: 'error',
+                title: 'Oops...',
+                html:  errorString
+              })
+          },
+          onAction (action, data, index) {
+            console.log('slot) action: ' + action, data.id, index)
+          }
        }
    
        
    
    }
 </script>
+
+ <style>
+    .swal2-container {
+      z-index: 10000;
+    }
+</style>

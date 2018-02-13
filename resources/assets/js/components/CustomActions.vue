@@ -19,13 +19,7 @@
     },
     methods: {
       itemAction (action, data, index) {
-        if(action == "view-item") {
-            this.view(index,data)
-        } else if(action == "edit-item") {
-            this.edit(index,data)
-        } else if(action == "delete-item") {
-            this.delete(index,data)
-        }
+        
       },
       view(index,data){
          axios.get('/role/show/'+ data.id)
