@@ -91,6 +91,7 @@
    import Vue from 'vue'
    import CustomActions from './CustomActions'
    import Modal from './Modal'
+   import Service from './Service'
    
    Vue.component('custom-actions', CustomActions)
    export default {
@@ -98,7 +99,8 @@
        Vuetable,
        VuetablePagination,
        VuetablePaginationInfo,
-       Modal  
+       Modal,
+       Service
      },
      data() {
         return {
@@ -200,6 +202,7 @@
           },
           onAction (action, data, index) {
             console.log('slot) action: ' + action, data.id, index)
+            console.log(Service.show('view','role',data.id))
           }
        }
    
