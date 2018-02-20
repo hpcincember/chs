@@ -24,9 +24,9 @@ class RoleController extends Controller
 
     public function show(Role $role)
     {
-        return response()->json([
-            'role' => $role
-        ]);
+        $model = new Role();
+        $role  = $model->getRoleById($role->id);
+        return response()->json($role);
 
     }
 
@@ -46,6 +46,14 @@ class RoleController extends Controller
         return response()->json([
             'role'    => $role,
             'message' => 'Success'
+        ], 200);
+    }
+
+    public function destroy(Role $role)
+    {
+         $role->delete();
+          return response()->json([
+            'message' => 'Deleted'
         ], 200);
     }
 }

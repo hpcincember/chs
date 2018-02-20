@@ -42,6 +42,7 @@ Route::get('/roles','RoleController@index');
 Route::get('/roles-data','RoleController@rolesData');
 Route::get('/role/show/{role}','RoleController@show');
 Route::post('/role','RoleController@store');
+Route::delete('/role/{role}','RoleController@destroy');
 
 
 Route::get('/modules-data','ModuleController@moduleData');

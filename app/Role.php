@@ -26,4 +26,13 @@ class Role extends Model
             ->select('roles.user_id','roles.id','modules.name as module','roles.operation');
     }
 
+     public function getRoleById($id)
+    {
+        return DB::table('roles')
+            ->leftJoin('modules','modules.id','=','roles.module_id')
+            ->where('roles.id','=',$id)
+            ->select('roles.user_id','roles.id','modules.name as module','roles.operation')
+            ->get();
+    }
+
 }

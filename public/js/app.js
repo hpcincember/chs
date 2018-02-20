@@ -50570,23 +50570,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -50625,7 +50608,7 @@ __WEBPACK_IMPORTED_MODULE_3_vue___default.a.component('custom-actions', __WEBPAC
         name: 'user_id',
         title: 'User ID'
       }, {
-        name: '__slot:actions', // <----
+        name: '__component:custom-actions', // <----
         title: 'Actions',
         titleClass: 'center aligned',
         dataClass: 'center aligned'
@@ -50698,9 +50681,20 @@ __WEBPACK_IMPORTED_MODULE_3_vue___default.a.component('custom-actions', __WEBPAC
         html: errorString
       });
     },
-    onAction: function onAction(action, data, index) {
-      console.log('slot) action: ' + action, data.id, index);
-      console.log(__WEBPACK_IMPORTED_MODULE_6__Service___default.a.show('view', 'role', data.id));
+    onActions: function onActions(action, data, index) {
+      for (var i = 0; i <= this.$children[0].$children.length - 1; i++) {
+        this.$children[0].$children[i].module = "role";
+      }
+      if (data.action == "view-item") {
+        swal({
+          title: '<b>ID#</b>' + data.data.id,
+          type: 'info',
+          html: '<table class="table">' + '<tbody>' + '<tr>' + '<th scope="row">ID</th>' + '<td>' + data.data.id + '</td>' + '</tr>' + '<tr>' + '<th scope="row">Module</th>' + '<td>' + data.data.module + '</td>' + '</tr>' + '<tr>' + '<th scope="row">Operation</th>' + '<td>' + data.data.operation + '</td>' + '</tr>' + '<tr>' + '<th scope="row">User ID</th>' + '<td>' + data.data.user_id + '</td>' + '</tr>' + '</tbody>' + '</table>',
+          confirmButtonText: 'Ok'
+        });
+      } else if (data.action == "delete-item") {
+        this.$refs.vuetable.reload();
+      }
     }
   }
 
@@ -51306,17 +51300,40 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       type: Number
     }
   },
+  data: function data() {
+    return {
+      module: '',
+      data: ''
+    };
+  },
+
   methods: {
-    itemAction: function itemAction(action, data, index) {},
+    itemAction: function itemAction(action, data, index) {
+      if (action == "view-item") {
+        this.view(index, data);
+      } else if (action == "edit-item") {
+        this.edit();
+      } else if (action == "delete-item") {
+        this.delete(data);
+      }
+      this.$parent.$emit('CustomAction:action-item', 'action', { action: action, data: data });
+    },
     view: function view(index, data) {
-      axios.get('/role/show/' + data.id).then(function (response) {
-        console.log(response);
+      var self = this;
+      axios.get('/' + this.module + '/show/' + data.id).then(function (response) {
+        self.data = response.data;
       }).catch(function (error) {
         console.log(error);
       });
     },
-    delete: function _delete(index, data) {
-      console.log(data);
+    delete: function _delete(data) {
+      console.log('/' + this.module + '/' + data.id);
+
+      axios.delete('/' + this.module + '/' + data.id).then(function (response) {
+        swal('Deleted!', 'success');
+      }).catch(function (error) {
+        console.log(error);
+      });
     },
     edit: function edit(index, data) {
       console.log(data);
@@ -51586,80 +51603,10 @@ var render = function() {
                     fields: _vm.fields,
                     "pagination-path": ""
                   },
-                  on: { "vuetable:pagination-data": _vm.onPaginationData },
-                  scopedSlots: _vm._u([
-                    {
-                      key: "actions",
-                      fn: function(props) {
-                        return [
-                          _c("div", { staticClass: "custom-actions" }, [
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-primary btn-xs",
-                                on: {
-                                  click: function($event) {
-                                    _vm.onAction(
-                                      "view-item",
-                                      props.rowData,
-                                      props.rowIndex
-                                    )
-                                  }
-                                }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                               View\n                             "
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-success btn-xs",
-                                on: {
-                                  click: function($event) {
-                                    _vm.onAction(
-                                      "edit-item",
-                                      props.rowData,
-                                      props.rowIndex
-                                    )
-                                  }
-                                }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                               Edit\n                             "
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-danger btn-xs",
-                                on: {
-                                  click: function($event) {
-                                    _vm.onAction(
-                                      "delete-item",
-                                      props.rowData,
-                                      props.rowIndex
-                                    )
-                                  }
-                                }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                               Delete\n                             "
-                                )
-                              ]
-                            )
-                          ])
-                        ]
-                      }
-                    }
-                  ])
+                  on: {
+                    "vuetable:pagination-data": _vm.onPaginationData,
+                    "CustomAction:action-item": _vm.onActions
+                  }
                 }),
                 _vm._v(" "),
                 _c(

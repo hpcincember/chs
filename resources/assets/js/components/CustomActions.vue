@@ -17,21 +17,46 @@
         type: Number
       }
     },
+    data(){
+      return{
+        module:'',
+        data:''
+      }
+    },
     methods: {
       itemAction (action, data, index) {
-        
+           if(action == "view-item") {
+              this.view(index,data);
+           }else if(action == "edit-item") {
+              this.edit();
+           } else if(action=="delete-item") {
+              this.delete(data);
+           }
+           this.$parent.$emit('CustomAction:action-item', 'action', {action: action, data: data});
       },
       view(index,data){
-         axios.get('/role/show/'+ data.id)
+          var self = this;
+          axios.get('/'+ this.module +'/show/' + data.id)
           .then(function (response) {
-            console.log(response);
+            self.data = response.data;
           })
           .catch(function (error) {
             console.log(error);
           });
       },
-      delete(index,data){
-        console.log(data)
+      delete(data){
+          console.log('/'+ this.module +'/' + data.id);
+
+           axios.delete('/'+ this.module +'/' + data.id)
+          .then(function (response) {
+              swal(
+                'Deleted!',
+                'success'
+              )
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
       },
       edit(index,data){
         console.log(data)

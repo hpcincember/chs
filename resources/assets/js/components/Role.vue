@@ -16,25 +16,8 @@
                         :fields="fields"
                         pagination-path=""
                         @vuetable:pagination-data="onPaginationData"
+                        @CustomAction:action-item="onActions"
                         >
-                           <template slot="actions" slot-scope="props"> 
-                              <div class="custom-actions">
-                                <button class="btn btn-primary btn-xs"
-                                  @click="onAction('view-item', props.rowData, props.rowIndex)">
-                                  View
-                                </button>
-                                <button class="btn btn-success btn-xs"
-                                  @click="onAction('edit-item', props.rowData, props.rowIndex)">
-                                  Edit
-                                </button>
-                                <button class="btn btn-danger btn-xs"
-                                  @click="onAction('delete-item', props.rowData, props.rowIndex)">
-                                  Delete
-                                </button>
-                              </div>
-                            </template>
-
-
                         </vuetable>
                      <div class="vuetable-pagination ui basic segment grid">
                         <vuetable-pagination-info ref="paginationInfo"
@@ -126,7 +109,7 @@
              title: 'User ID'
            },
             {
-              name: '__slot:actions',   // <----
+              name: '__component:custom-actions',   // <----
               title: 'Actions',
               titleClass: 'center aligned',
               dataClass: 'center aligned'
@@ -200,9 +183,42 @@
                 html:  errorString
               })
           },
-          onAction (action, data, index) {
-            console.log('slot) action: ' + action, data.id, index)
-            console.log(Service.show('view','role',data.id))
+          onActions (action,data,index) {
+            for (var i = 0; i <= this.$children[0].$children.length - 1; i++) {
+              this.$children[0].$children[i].module = "role";
+            }
+            if(data.action=="view-item") {
+               swal({
+                title: '<b>ID#</b>' + data.data.id,
+                type: 'info',
+                html:
+                 '<table class="table">' +
+                  '<tbody>' +
+                    '<tr>' +
+                      '<th scope="row">ID</th>' +
+                      '<td>'+ data.data.id +'</td>' +
+                    '</tr>' +
+                   '<tr>' +
+                      '<th scope="row">Module</th>' +
+                      '<td>'+ data.data.module +'</td>' +
+                    '</tr>' +
+                   '<tr>' +
+                      '<th scope="row">Operation</th>' +
+                      '<td>'+ data.data.operation +'</td>' +
+                    '</tr>' +
+                   '<tr>' +
+                      '<th scope="row">User ID</th>' +
+                      '<td>'+ data.data.user_id +'</td>' +
+                    '</tr>'+
+                  '</tbody>' +
+                '</table>',
+                confirmButtonText:'Ok',
+              })
+            } else if(data.action =="delete-item") {
+               this.$refs.vuetable.reload()
+            }
+
+
           }
        }
    
