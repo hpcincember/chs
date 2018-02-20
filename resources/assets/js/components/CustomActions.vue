@@ -25,6 +25,7 @@
     },
     methods: {
       itemAction (action, data, index) {
+           this.$parent.$emit('CustomAction:action-item', 'action', {action: action, data: data});
            if(action == "view-item") {
               this.view(index,data);
            }else if(action == "edit-item") {
@@ -45,9 +46,6 @@
           });
       },
       delete(data){
-          console.log('/'+ this.module +'/' + data.id);
-
-           axios.delete('/'+ this.module +'/' + data.id)
           .then(function (response) {
               swal(
                 'Deleted!',

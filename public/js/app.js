@@ -51277,69 +51277,9 @@ exports.push([module.i, "\n.custom-actions button.ui.button {\n  padding: 8px 8p
 
 /***/ }),
 /* 162 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  props: {
-    rowData: {
-      type: Object,
-      required: true
-    },
-    rowIndex: {
-      type: Number
-    }
-  },
-  data: function data() {
-    return {
-      module: '',
-      data: ''
-    };
-  },
-
-  methods: {
-    itemAction: function itemAction(action, data, index) {
-      if (action == "view-item") {
-        this.view(index, data);
-      } else if (action == "edit-item") {
-        this.edit();
-      } else if (action == "delete-item") {
-        this.delete(data);
-      }
-      this.$parent.$emit('CustomAction:action-item', 'action', { action: action, data: data });
-    },
-    view: function view(index, data) {
-      var self = this;
-      axios.get('/' + this.module + '/show/' + data.id).then(function (response) {
-        self.data = response.data;
-      }).catch(function (error) {
-        console.log(error);
-      });
-    },
-    delete: function _delete(data) {
-      console.log('/' + this.module + '/' + data.id);
-
-      axios.delete('/' + this.module + '/' + data.id).then(function (response) {
-        swal('Deleted!', 'success');
-      }).catch(function (error) {
-        console.log(error);
-      });
-    },
-    edit: function edit(index, data) {
-      console.log(data);
-    }
-  }
-});
+throw new Error("Module build failed: SyntaxError: c:/xampp/htdocs/chs/resources/assets/js/components/CustomActions.vue: Unexpected token (49:8)\n\n\u001b[0m \u001b[90m 47 | \u001b[39m    }\u001b[33m,\u001b[39m\n \u001b[90m 48 | \u001b[39m    \u001b[36mdelete\u001b[39m(data){\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 49 | \u001b[39m        \u001b[33m.\u001b[39mthen(\u001b[36mfunction\u001b[39m (response) {\n \u001b[90m    | \u001b[39m        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 50 | \u001b[39m            swal(\n \u001b[90m 51 | \u001b[39m              \u001b[32m'Deleted!'\u001b[39m\u001b[33m,\u001b[39m\n \u001b[90m 52 | \u001b[39m              \u001b[32m'success'\u001b[39m\u001b[0m\n");
 
 /***/ }),
 /* 163 */
