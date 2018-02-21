@@ -77,6 +77,17 @@
                       </modal>
                     </div>  
                   <!-- add end modal -->
+
+                  <sweet-modal ref="modal" title="Role's Information">
+                     <table class="table table-bordered table-striped">
+                        <tbody>
+                          <tr v-for="item,key in items">
+                            <td><b>{{ key }}</b></td>
+                            <td>{{ item }}</td>
+                          </tr>
+                       </tbody>
+                      </table>
+                  </sweet-modal>
                   
             </div>
          </div>

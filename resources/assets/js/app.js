@@ -6,11 +6,13 @@
  */
 import swal from 'sweetalert2'
 import LaravelValidator from 'vue-laravel-validator';
+import SweetModal from 'sweet-modal-vue/src/plugin.js'
 require('./bootstrap');
 
 window.swal = swal
 window.Vue = require('vue');
 Vue.use(LaravelValidator);
+Vue.use(SweetModal);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

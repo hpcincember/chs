@@ -31,7 +31,8 @@ export default {
               titleClass: 'center aligned',
               dataClass: 'center aligned'
         }
-  		]
+  		],
+      items:[]
   	}
   },
   methods:{
@@ -45,14 +46,16 @@ export default {
      onAction(action,data,index){
         console.log(action + data + index)
         if(action == "view-item") {
-           this.viewItem(data)
+           this.viewItem(data);
         }
 
      },
      viewItem(data){
+      self = this;
         axios.get('/leader/show/' + data.id)
               .then(function (response) {
-                console.log(response.data);
+                self.items = response.data[0];
+                self.$refs.modal.open();
           })
           .catch(function (error) {
             console.log(error);

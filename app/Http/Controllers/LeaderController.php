@@ -71,7 +71,8 @@ class LeaderController extends Controller
         //         return '<a href="leader/edit/' . $leader->id . '" class="btn btn-sm btn-primary">Edit</a>'.$deleteButton;
         //     })
         //     ->make(true);
-        return DB::table('leaders')->get();
+        $leader = DB::table('leaders')->get();
+        return  response()->json($leader);
     }
 
     public function leaderPageData()

@@ -1,7 +1,7 @@
 <template>
  <div class="container">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-lg-12">
             	<div class="panel-group">
 				  <div class="panel panel-default">
 				    <div class="panel-body table-responsive">
@@ -39,8 +39,18 @@
                 
             </div>
         </div>
+			<sweet-modal ref="modal" title="Leader's Information">
+				 <table class="table table-bordered table-striped">
+				    <tbody>
+				      <tr v-for="item,key in items">
+				        <td><b>{{ key }}</b></td>
+				        <td>{{ item }}</td>
+				      </tr>
+				   </tbody>
+				  </table>
+			</sweet-modal>
     </div>
- 
+ 	
 </template>
 
 <script src="./leader.js"></script>

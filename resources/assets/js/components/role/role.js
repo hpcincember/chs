@@ -32,7 +32,8 @@
            }
          ],
          users: [],
-         modules: []
+         modules: [],
+         items:[]
        }
     
      },
@@ -111,34 +112,11 @@
             }
           },
           viewItem(data,index){
+            self = this;
              axios.get('/role/show/' + data.id)
               .then(function (response) {
-                swal({
-                  title: '<b>Operation ID#</b>' + response.data[0].id,
-                  type: 'info',
-                  html:
-                    '<table class="table table-hover">' +
-                      '<tbody>' +
-                        '<tr>' +
-                          '<td>ID</td>' +
-                          '<td>'+ response.data[0].id +'</td>' +
-                        '</tr>' +
-                        '<tr>' +
-                          '<td>Module</td>' +
-                          '<td>'+ response.data[0].module +'</td>' +
-                        '</tr>' +
-                        '<tr>' +
-                          '<td>Operation</td>' +
-                          '<td>'+ response.data[0].operation +'</td>' +
-                        '</tr>' +
-                        '<tr>' +
-                          '<td>User Id</td>' +
-                          '<td>'+ response.data[0].user_id +'</td>' +
-                        '</tr>' +
-                      '</tbody>',
-                  confirmButtonText:
-                    'Ok',
-                })
+                  self.items = response.data[0];
+                  self.$refs.modal.open();
               })
               .catch(function (error) {
                 console.log(error);
