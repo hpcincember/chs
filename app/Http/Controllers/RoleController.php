@@ -19,7 +19,7 @@ class RoleController extends Controller
     {
         // $this->authorize('view',Role::class);
         $model = new Role();
-        return $roles = $model->getRoles()->paginate(10);
+        return $roles = $model->getRoles()->paginate(5);
     }
 
     public function show(Role $role)

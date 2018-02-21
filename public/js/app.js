@@ -13533,7 +13533,7 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_laravel_validator___default.a);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 Vue.component('example', __webpack_require__(87));
-Vue.component('leader', __webpack_require__(88));
+Vue.component('leader', __webpack_require__(171));
 Vue.component('role', __webpack_require__(145));
 Vue.component('vtable', __webpack_require__(164));
 
@@ -46713,77 +46713,8 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 88 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(2)
-/* script */
-var __vue_script__ = __webpack_require__(89)
-/* template */
-var __vue_template__ = __webpack_require__(144)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\assets\\js\\components\\Leader.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-2633aa80", Component.options)
-  } else {
-    hotAPI.reload("data-v-2633aa80", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 89 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuetable_2_src_components_Vuetable__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuetable_2_src_components_Vuetable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vuetable_2_src_components_Vuetable__);
-//
-//
-//
-//
-//
-//
-//
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  components: {
-    Vuetable: __WEBPACK_IMPORTED_MODULE_0_vuetable_2_src_components_Vuetable___default.a
-  }
-});
-
-/***/ }),
+/* 88 */,
+/* 89 */,
 /* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -50366,32 +50297,7 @@ if (false) {
 }
 
 /***/ }),
-/* 144 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("vuetable", {
-    ref: "vuetable",
-    attrs: {
-      "api-url": "https://vuetable.ratiw.net/api/users",
-      fields: ["module", "operation"]
-    }
-  })
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-2633aa80", module.exports)
-  }
-}
-
-/***/ }),
+/* 144 */,
 /* 145 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -50402,9 +50308,9 @@ function injectStyle (ssrContext) {
 }
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(172)
+var __vue_script__ = __webpack_require__(148)
 /* template */
-var __vue_template__ = __webpack_require__(171)
+var __vue_template__ = __webpack_require__(163)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -50483,7 +50389,166 @@ exports.push([module.i, "\n.swal2-container {\n  z-index: 10000;\n}\n", ""]);
 
 
 /***/ }),
-/* 148 */,
+/* 148 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuetable_2_src_components_Vuetable__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuetable_2_src_components_Vuetable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vuetable_2_src_components_Vuetable__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuetable_2_src_components_VuetablePaginationDropdown__ = __webpack_require__(149);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuetable_2_src_components_VuetablePaginationDropdown___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vuetable_2_src_components_VuetablePaginationDropdown__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuetable_2_src_components_VuetablePaginationInfo__ = __webpack_require__(154);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuetable_2_src_components_VuetablePaginationInfo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_vuetable_2_src_components_VuetablePaginationInfo__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Modal__ = __webpack_require__(159);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__Modal__);
+
+
+//import VuetablePagination from 'vuetable-2/src/components/VuetablePagination'
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    Vuetable: __WEBPACK_IMPORTED_MODULE_0_vuetable_2_src_components_Vuetable___default.a,
+    VuetablePagination: __WEBPACK_IMPORTED_MODULE_1_vuetable_2_src_components_VuetablePaginationDropdown___default.a,
+    VuetablePaginationInfo: __WEBPACK_IMPORTED_MODULE_2_vuetable_2_src_components_VuetablePaginationInfo___default.a,
+    Modal: __WEBPACK_IMPORTED_MODULE_4__Modal___default.a
+  },
+  data: function data() {
+    return {
+      showModal: false,
+      showEditModal: false,
+      module_id: '',
+      user_id: '',
+      role: '',
+      fields: [{ name: 'id', title: 'Id' }, { name: 'module', title: 'Module' }, { name: 'operation', title: 'operation' }, { name: 'user_id', title: 'User ID' }, {
+        name: '__slot:actions', // <----
+        title: 'Actions',
+        titleClass: 'center aligned',
+        dataClass: 'center aligned'
+      }],
+      users: [],
+      modules: []
+    };
+  },
+  mounted: function mounted() {
+    this.getModules();
+    this.getUsers();
+  },
+
+  methods: {
+    onPaginationData: function onPaginationData(paginationData) {
+      this.$refs.pagination.setPaginationData(paginationData);
+      this.$refs.paginationInfo.setPaginationData(paginationData);
+    },
+    onChangePage: function onChangePage(page) {
+      this.$refs.vuetable.changePage(page);
+    },
+    openModal: function openModal() {
+      this.showModal = true;
+    },
+    closeModal: function closeModal() {
+      this.showModal = this.showEditModal = false;
+    },
+    getUsers: function getUsers() {
+      var _this = this;
+
+      axios.get('/leaders-data').then(function (response) {
+        _this.users = response.data;
+      });
+    },
+    getModules: function getModules() {
+      var _this2 = this;
+
+      axios.get('/modules-data').then(function (response) {
+        _this2.modules = response.data;
+      });
+    },
+    createRole: function createRole() {
+      var _this3 = this;
+
+      axios.post('/role', this.$data).then(function (response) {
+        _this3.showModal = false;
+        _this3.user_id = "";
+        _this3.module_id = "";
+        _this3.role = "";
+        _this3.$refs.vuetable.reload();
+      }).catch(function (error) {
+        _this3.showError(error.response.data);
+      });
+    },
+    showError: function showError(message) {
+      var errorString = '';
+      for (var prop in message) {
+        if (Array.isArray(prop)) {
+          for (var msg in prop) {
+            errorString += message[prop] + '<BR>';
+          }
+        } else {
+          errorString += message[prop] + '<BR>';
+        }
+      }
+
+      swal({
+        type: 'error',
+        title: 'Oops...',
+        html: errorString
+      });
+    },
+    onAction: function onAction(action, data, index) {
+      if (action == "view-item") {
+        this.viewItem(data, index);
+      } else if (action == "edit-item") {
+        this.editItem();
+      } else if (action == "delete-item") {
+        this.deleteItem(data, index);
+      }
+    },
+    viewItem: function viewItem(data, index) {
+      axios.get('/role/show/' + data.id).then(function (response) {
+        swal({
+          title: '<b>Operation ID#</b>' + response.data[0].id,
+          type: 'info',
+          html: '<table class="table table-hover">' + '<tbody>' + '<tr>' + '<td>ID</td>' + '<td>' + response.data[0].id + '</td>' + '</tr>' + '<tr>' + '<td>Module</td>' + '<td>' + response.data[0].module + '</td>' + '</tr>' + '<tr>' + '<td>Operation</td>' + '<td>' + response.data[0].operation + '</td>' + '</tr>' + '<tr>' + '<td>User Id</td>' + '<td>' + response.data[0].user_id + '</td>' + '</tr>' + '</tbody>',
+          confirmButtonText: 'Ok'
+        });
+      }).catch(function (error) {
+        console.log(error);
+      });
+    },
+    editItem: function editItem() {
+      this.showEditModal = true;
+    },
+    deleteItem: function deleteItem(data, index) {
+      self = this;
+      swal({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes'
+      }).then(function (result) {
+        if (result.value) {
+          axios.delete('/role/' + data.id).then(function (response) {
+            swal('Deleted!', 'Your file has been deleted.', 'success');
+            self.$refs.vuetable.reload();
+          }).catch(function (error) {
+            console.log(error);
+          });
+        }
+      });
+    }
+  }
+
+});
+
+/***/ }),
 /* 149 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -51099,163 +51164,7 @@ if (false) {
 }
 
 /***/ }),
-/* 163 */,
-/* 164 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(2)
-/* script */
-var __vue_script__ = __webpack_require__(165)
-/* template */
-var __vue_template__ = __webpack_require__(166)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\assets\\js\\components\\Table.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-1c48f032", Component.options)
-  } else {
-    hotAPI.reload("data-v-1c48f032", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 165 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuetable_2_src_components_Vuetable__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuetable_2_src_components_Vuetable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vuetable_2_src_components_Vuetable__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  components: {
-    Vuetable: __WEBPACK_IMPORTED_MODULE_0_vuetable_2_src_components_Vuetable___default.a
-  },
-  data: function data() {
-    return {
-      fields: ['name', 'email', {
-        name: 'birthdate',
-        titleClass: 'left aligned',
-        dataClass: 'left aligned'
-      }, {
-        name: 'nickname'
-      }, {
-        name: 'gender',
-        titleClass: 'center aligned',
-        dataClass: 'center aligned'
-      }, {
-        name: 'salary',
-        titleClass: 'center aligned',
-        dataClass: 'right aligned'
-      }]
-    };
-  }
-});
-
-/***/ }),
-/* 166 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-12" }, [
-        _c("div", { staticClass: "panel panel-default" }, [
-          _c("div", { staticClass: "panel-heading" }, [_vm._v("Leaders")]),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "panel-body" },
-            [
-              _c("vuetable", {
-                ref: "vuetable",
-                attrs: {
-                  "api-url": "https://vuetable.ratiw.net/api/users",
-                  fields: _vm.fields
-                }
-              })
-            ],
-            1
-          )
-        ])
-      ])
-    ])
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-1c48f032", module.exports)
-  }
-}
-
-/***/ }),
-/* 167 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 168 */,
-/* 169 */,
-/* 170 */,
-/* 171 */
+/* 163 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -51593,7 +51502,344 @@ if (false) {
 }
 
 /***/ }),
-/* 172 */
+/* 164 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(165)
+/* template */
+var __vue_template__ = __webpack_require__(166)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\Table.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-1c48f032", Component.options)
+  } else {
+    hotAPI.reload("data-v-1c48f032", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 165 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuetable_2_src_components_Vuetable__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuetable_2_src_components_Vuetable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vuetable_2_src_components_Vuetable__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    Vuetable: __WEBPACK_IMPORTED_MODULE_0_vuetable_2_src_components_Vuetable___default.a
+  },
+  data: function data() {
+    return {
+      fields: ['name', 'email', {
+        name: 'birthdate',
+        titleClass: 'left aligned',
+        dataClass: 'left aligned'
+      }, {
+        name: 'nickname'
+      }, {
+        name: 'gender',
+        titleClass: 'center aligned',
+        dataClass: 'center aligned'
+      }, {
+        name: 'salary',
+        titleClass: 'center aligned',
+        dataClass: 'right aligned'
+      }]
+    };
+  }
+});
+
+/***/ }),
+/* 166 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("div", { staticClass: "panel panel-default" }, [
+          _c("div", { staticClass: "panel-heading" }, [_vm._v("Leaders")]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "panel-body" },
+            [
+              _c("vuetable", {
+                ref: "vuetable",
+                attrs: {
+                  "api-url": "https://vuetable.ratiw.net/api/users",
+                  fields: _vm.fields
+                }
+              })
+            ],
+            1
+          )
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-1c48f032", module.exports)
+  }
+}
+
+/***/ }),
+/* 167 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 168 */,
+/* 169 */,
+/* 170 */,
+/* 171 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(174)
+/* template */
+var __vue_template__ = __webpack_require__(173)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\leader\\Leader.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0c8ca0d6", Component.options)
+  } else {
+    hotAPI.reload("data-v-0c8ca0d6", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 172 */,
+/* 173 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("div", { staticClass: "panel-group" }, [
+          _c("div", { staticClass: "panel panel-default" }, [
+            _c(
+              "div",
+              { staticClass: "panel-body table-responsive" },
+              [
+                _c("vuetable", {
+                  ref: "vuetable",
+                  attrs: {
+                    "api-url": "http://127.0.0.1:8000/leaders-page-data",
+                    fields: _vm.fields,
+                    "pagination-path": ""
+                  },
+                  on: { "vuetable:pagination-data": _vm.onPaginationData },
+                  scopedSlots: _vm._u([
+                    {
+                      key: "actions",
+                      fn: function(props) {
+                        return [
+                          _c("div", { staticClass: "custom-actions" }, [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-primary btn-sm",
+                                on: {
+                                  click: function($event) {
+                                    _vm.onAction(
+                                      "view-item",
+                                      props.rowData,
+                                      props.rowIndex
+                                    )
+                                  }
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n\t\t\t\t\t\t\t      View\n\t\t\t\t\t\t\t    "
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-info btn-sm",
+                                on: {
+                                  click: function($event) {
+                                    _vm.onAction(
+                                      "edit-item",
+                                      props.rowData,
+                                      props.rowIndex
+                                    )
+                                  }
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n\t\t\t\t\t\t\t      Edit\n\t\t\t\t\t\t\t    "
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-danger btn-sm",
+                                on: {
+                                  click: function($event) {
+                                    _vm.onAction(
+                                      "delete-item",
+                                      props.rowData,
+                                      props.rowIndex
+                                    )
+                                  }
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n\t\t\t\t\t\t\t      Delete\n\t\t\t\t\t\t\t    "
+                                )
+                              ]
+                            )
+                          ])
+                        ]
+                      }
+                    }
+                  ])
+                }),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "vuetable-pagination ui basic segment grid" },
+                  [
+                    _c("vuetable-pagination-info", { ref: "paginationInfo" }),
+                    _vm._v(" "),
+                    _c("vuetable-pagination", {
+                      ref: "pagination",
+                      on: {
+                        "vuetable-pagination:change-page": _vm.onChangePage
+                      }
+                    })
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-0c8ca0d6", module.exports)
+  }
+}
+
+/***/ }),
+/* 174 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -51604,125 +51850,48 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuetable_2_src_components_VuetablePaginationDropdown___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vuetable_2_src_components_VuetablePaginationDropdown__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuetable_2_src_components_VuetablePaginationInfo__ = __webpack_require__(154);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuetable_2_src_components_VuetablePaginationInfo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_vuetable_2_src_components_VuetablePaginationInfo__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue__ = __webpack_require__(41);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Modal__ = __webpack_require__(159);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__Modal__);
-
-
-//import VuetablePagination from 'vuetable-2/src/components/VuetablePagination'
-
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  components: {
-    Vuetable: __WEBPACK_IMPORTED_MODULE_0_vuetable_2_src_components_Vuetable___default.a,
-    VuetablePagination: __WEBPACK_IMPORTED_MODULE_1_vuetable_2_src_components_VuetablePaginationDropdown___default.a,
-    VuetablePaginationInfo: __WEBPACK_IMPORTED_MODULE_2_vuetable_2_src_components_VuetablePaginationInfo___default.a,
-    Modal: __WEBPACK_IMPORTED_MODULE_4__Modal___default.a
-  },
-  data: function data() {
-    return {
-      showModal: false,
-      module_id: '',
-      user_id: '',
-      role: '',
-      fields: [{
-        name: 'id',
-        title: 'Id'
-      }, {
-        name: 'module',
-        title: 'Module'
-      }, {
-        name: 'operation',
-        title: 'operation'
-      }, {
-        name: 'user_id',
-        title: 'User ID'
-      }, {
-        name: '__slot:actions', // <----
-        title: 'Actions',
-        titleClass: 'center aligned',
-        dataClass: 'center aligned'
-      }],
-      users: [],
-      modules: []
-    };
-  },
-  mounted: function mounted() {
-    this.getModules();
-    this.getUsers();
-  },
+      components: {
+            Vuetable: __WEBPACK_IMPORTED_MODULE_0_vuetable_2_src_components_Vuetable___default.a,
+            VuetablePagination: __WEBPACK_IMPORTED_MODULE_1_vuetable_2_src_components_VuetablePaginationDropdown___default.a,
+            VuetablePaginationInfo: __WEBPACK_IMPORTED_MODULE_2_vuetable_2_src_components_VuetablePaginationInfo___default.a
+      },
+      data: function data() {
+            return {
+                  fields: [{ name: 'id', title: 'Id' }, { name: 'first_name', title: 'First Name' }, { name: 'middle_name', title: 'Middle Name' }, { name: 'last_name', title: 'Last Name' }, { name: 'suffix', title: 'Suffix' }, { name: 'gender', title: 'Gender' }, { name: 'school', title: 'School' }, { name: 'work_place', title: 'Work Place' }, { name: 'contact_number', title: 'Contact Number' }, { name: 'fb_account', title: 'Facebook Account' }, { name: 'email_address', title: 'Email Address' }, { name: 'level', title: 'Level' }, { name: 'cell_group', title: 'Cell Group' }, { name: 'birth_date', title: 'Birth date' }, { name: 'first_attend', title: 'First Attend' }, {
+                        name: '__slot:actions', // <----
+                        title: 'Actions',
+                        titleClass: 'center aligned',
+                        dataClass: 'center aligned'
+                  }]
+            };
+      },
 
-  methods: {
-    onPaginationData: function onPaginationData(paginationData) {
-      this.$refs.pagination.setPaginationData(paginationData);
-      this.$refs.paginationInfo.setPaginationData(paginationData);
-    },
-    onChangePage: function onChangePage(page) {
-      this.$refs.vuetable.changePage(page);
-    },
-    openModal: function openModal() {
-      this.showModal = true;
-    },
-    closeModal: function closeModal() {
-      this.showModal = false;
-    },
-    getUsers: function getUsers() {
-      var _this = this;
-
-      axios.get('/leaders-data').then(function (response) {
-        _this.users = response.data;
-      });
-    },
-    getModules: function getModules() {
-      var _this2 = this;
-
-      axios.get('/modules-data').then(function (response) {
-        _this2.modules = response.data;
-      });
-    },
-    createRole: function createRole() {
-      var _this3 = this;
-
-      axios.post('/role', this.$data).then(function (response) {
-        _this3.showModal = false;
-        _this3.user_id = "";
-        _this3.module_id = "";
-        _this3.role = "";
-        _this3.$refs.vuetable.reload();
-      }).catch(function (error) {
-        _this3.showError(error.response.data);
-      });
-    },
-    showError: function showError(message) {
-      var errorString = '';
-      for (var prop in message) {
-        if (Array.isArray(prop)) {
-          for (var msg in prop) {
-            errorString += message[prop] + '<BR>';
-          }
-        } else {
-          errorString += message[prop] + '<BR>';
-        }
+      methods: {
+            onPaginationData: function onPaginationData(paginationData) {
+                  this.$refs.pagination.setPaginationData(paginationData);
+                  this.$refs.paginationInfo.setPaginationData(paginationData);
+            },
+            onChangePage: function onChangePage(page) {
+                  this.$refs.vuetable.changePage(page);
+            },
+            onAction: function onAction(action, data, index) {
+                  console.log(action + data + index);
+                  if (action == "view-item") {
+                        this.viewItem(data);
+                  }
+            },
+            viewItem: function viewItem(data) {
+                  axios.get('/leader/show/' + data.id).then(function (response) {
+                        console.log(response.data);
+                  }).catch(function (error) {
+                        console.log(error);
+                  });
+            }
       }
-
-      swal({
-        type: 'error',
-        title: 'Oops...',
-        html: errorString
-      });
-    },
-    onAction: function onAction(action, data, index) {
-      console.log('slot) action: ' + action, data.id, index);
-      if (action == "view-item") {} else if (action == "view-item") {} else if (action == "delete-item") {}
-    },
-    editItem: function editItem() {},
-    viewItem: function viewItem() {},
-    deleteItem: function deleteItem() {}
-  }
-
 });
 
 /***/ })

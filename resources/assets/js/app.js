@@ -17,7 +17,7 @@ Vue.use(LaravelValidator);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 Vue.component('example', require('./components/Example.vue'));
-Vue.component('leader',require('./components/Leader.vue'));
+Vue.component('leader',require('./components/leader/Leader.vue'));
 Vue.component('role',require('./components/role/Role.vue'));
 Vue.component('vtable',require('./components/Table.vue'));
 

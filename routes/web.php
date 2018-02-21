@@ -31,8 +31,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/leaders', 'LeaderController@index')->name('leader');
 Route::get('/leaders-data', 'LeaderController@leaderData')->name('leader.data');
+Route::get('/leaders-page-data', 'LeaderController@leaderPageData')->name('leader.page-data');
 
 Route::get('/leader/create', 'LeaderController@create')->name('leader.create');
+Route::get('/leader/show/{leader}','LeaderController@show');
 Route::post('/leader', 'LeaderController@store');
 Route::get('/leader/edit/{leader}', 'LeaderController@edit');
 Route::patch('/leader/{leader}','LeaderController@update');

@@ -74,6 +74,12 @@ class LeaderController extends Controller
         return DB::table('leaders')->get();
     }
 
+    public function leaderPageData()
+    {
+         return DB::table('leaders')->paginate(10);
+
+    }
+
     public function edit(Leader $leader)
     {
         $this->authorize('edit', Leader::class);
@@ -120,5 +126,11 @@ class LeaderController extends Controller
     {
         $leader->delete();
         return redirect()->route('leader');
+    }
+
+    public function show(Leader $leader) 
+    {
+        $leader = DB::table('leaders')->where('id','=',$leader->id)->get();
+        return $leader;
     }
 }
