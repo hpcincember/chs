@@ -46,15 +46,15 @@
           });
       },
       delete(data){
-          .then(function (response) {
-              swal(
-                'Deleted!',
-                'success'
-              )
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
+          // .then(function (response) {
+          //     swal(
+          //       'Deleted!',
+          //       'success'
+          //     )
+          // })
+          // .catch(function (error) {
+          //   console.log(error);
+          // });
       },
       edit(index,data){
         console.log(data)

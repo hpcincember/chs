@@ -18,7 +18,7 @@ Vue.use(LaravelValidator);
  */
 Vue.component('example', require('./components/Example.vue'));
 Vue.component('leader',require('./components/Leader.vue'));
-Vue.component('role',require('./components/Role.vue'));
+Vue.component('role',require('./components/role/Role.vue'));
 Vue.component('vtable',require('./components/Table.vue'));
 
 const app = new Vue({
