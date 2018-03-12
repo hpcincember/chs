@@ -77,7 +77,13 @@ class LeaderController extends Controller
 
     public function leaderPageData()
     {
-         return DB::table('leaders')->paginate(10);
+       
+       $leaders = DB::table('leaders')
+        ->leftJoin('cellgroups as network','network.id','=','leaders.network')
+        ->leftJoin('cellgroups as cg','cg.id' ,'=','leaders.cell_group')
+        ->select('leaders.*','network.name as network','cg.name as cell_group')
+        ->paginate();
+        return $leaders;
 
     }
 

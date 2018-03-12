@@ -4,41 +4,18 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Helpers\Helper;
+use DB;
 class Leader extends Model
 {
-    private $helper;
-    private $cellGroup;
-
-    public function __construct()
+  
+    public function findLeaderFullInfo()
     {
-        $this->helper = new Helper();
-        $this->cellGroup = new Cellgroup();
-    }
-
-    public function getLevelAttribute($level)
-    {
-        return $this->helper->getLevel($level);
-    }
-
-    public function getGenderAttribute($gender)
-    {
-        return $this->helper->getGender($gender);
-    }
-
-    public function getNetworkAttribute($network)
-    {
-        $networkName =  CellGroup::find($network);
-        return $networkName['name'];
-    }
-
-    public function getCellGroupAttribute($cellGroup)
-    {
-        $cellGroupName =  CellGroup::find($cellGroup);
-        return $cellGroupName['name'];
-    }
-
-    public function  getFbAccountAttributes($fbAccount)
-    {
-        return "https://www.facebook.com/".$fbAccount;
+        $sql = "SELECT leaders.*,
+                (SELECT name FROM cellgroups WHERE id = cg.mother_cell_group_id) AS mother_cg_name,
+                (SELECT name FROM cellgroups WHERE id = cg.network_id) AS network_name,cg.name AS cell_group_name
+                     FROM leaders
+                     LEFT JOIN cellgroups cg on cg.leader_id = leaders.id
+                ORDER by id";
+        return DB::select($sql);
     }
 }

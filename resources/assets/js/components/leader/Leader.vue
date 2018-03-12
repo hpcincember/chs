@@ -8,22 +8,23 @@
 				    	<vuetable ref="vuetable"
 						    api-url="http://127.0.0.1:8000/leaders-page-data"
 						    :fields="fields"
+						    :sort-order="sortOrder"
 						    pagination-path=""
 						     @vuetable:pagination-data="onPaginationData"
 						  >
 						  	 <template slot="actions" slot-scope="props">
-							  <div class="custom-actions">
-							    <button class="btn btn-primary btn-sm"
+							  <div class="btn-group" role="group" aria-label="Basic example">
+							    <button class="btn btn-primary btn-xs"
 							      @click="onAction('view-item', props.rowData, props.rowIndex)">
-							      View
+							      V
 							    </button>
-							    <button class="btn btn-info btn-sm"
+							    <button class="btn btn-info btn-xs"
 							      @click="onAction('edit-item', props.rowData, props.rowIndex)">
-							      Edit
+							      E
 							    </button>
-							    <button class="btn btn-danger btn-sm"
+							    <button class="btn btn-danger btn-xs"
 							      @click="onAction('delete-item', props.rowData, props.rowIndex)">
-							      Delete
+							      D
 							    </button>
 							  </div>
 							  </template>
@@ -49,6 +50,7 @@
 				   </tbody>
 				  </table>
 			</sweet-modal>
+		
     </div>
  	
 </template>

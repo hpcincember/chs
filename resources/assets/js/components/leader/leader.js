@@ -5,23 +5,35 @@ export default {
   components: {
     Vuetable,
     VuetablePagination,
-    VuetablePaginationInfo
+    VuetablePaginationInfo,
   },
   data(){
   	return{
+      sortOrder: [
+      {
+        field: 'last_name',
+        sortField:'last_name',
+        direction: 'asc'
+      }
+      ],
   		fields: [
-        { name:'id',title:'Id'},
-        { name:'first_name',title:'First Name'},
+        { name:'id',sortField:'id',title:'Id'},
+        { 
+          name:'first_name',
+          sortField: 'first_name',
+          title:'First Name'
+        },
         { name:'middle_name',title:'Middle Name'},
         { name:'last_name',title:'Last Name'},
         { name:'suffix',title:'Suffix'},
-        { name:'gender',title:'Gender'},
+        { name:'gender',title:'Gender',callback:'gender'},
         { name:'school',title:'School'},
         { name:'work_place',title:'Work Place'},
         { name:'contact_number',title:'Contact Number'},
         { name:'fb_account',title:'Facebook Account'},
-        { name:'email_address',title:'Email Address'},
+        // { name:'email_address',title:'Email Address'},
         { name:'level',title:'Level'},
+        { name:'network',title:'Network'},
         { name:'cell_group',title:'Cell Group'},
         { name:'birth_date',title:'Birth date'},
   			{ name:'first_attend',title:'First Attend'},
@@ -60,6 +72,9 @@ export default {
           .catch(function (error) {
             console.log(error);
           });
+     },
+     gender(gender){
+       return (gender == 1) ? 'Male' : 'Female'
      }
   }
 }
