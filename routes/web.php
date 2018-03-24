@@ -49,3 +49,7 @@ Route::delete('/role/{role}','RoleController@destroy');
 
 Route::get('/modules-data','ModuleController@moduleData');
 Route::post('/module','ModuleController@store');
+
+
+Route::get('/networks','CellGroupController@getNetworks');
+Route::get('/cellgroups','CellGroupController@getCellGroups');

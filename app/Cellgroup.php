@@ -10,4 +10,9 @@ class Cellgroup extends Model
     {
         return DB::table('cellgroups')->where('is_network','=',1)->get();
     }
+
+    public function findCellGroups()
+    {
+        return DB::table('cellgroups')->get();
+    }
 }

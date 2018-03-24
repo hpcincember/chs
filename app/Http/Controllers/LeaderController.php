@@ -14,7 +14,7 @@ class LeaderController extends Controller
 {
     public function index()
     {
-        $this->authorize('view', Leader::class);
+        // $this->authorize('view', Leader::class);
         return view('leader.index', compact('modules'));
     }
 
@@ -31,7 +31,6 @@ class LeaderController extends Controller
     {
         $this->validate($request, [
             "first_name" => 'required',
-            'middle_name'=>'exists:leaders',
             "last_name" => 'required',
             "gender" => 'required',
             "birth_date" => 'required|date',
@@ -45,6 +44,7 @@ class LeaderController extends Controller
         $leader->last_name = $request->last_name;
         $leader->gender = $request->gender;
         $leader->school = $request->school;
+        $leader->suffix = $request->suffix;
         $leader->work_place = $request->work_place;
         $leader->contact_number = $request->contact_number;
         $leader->fb_account  = $request->fb_account;
@@ -55,22 +55,13 @@ class LeaderController extends Controller
         $leader->birth_date = $request->birth_date;
         $leader->first_attend = $request->first_attend;
         $leader->save();
-        return redirect()->route('leaders');
+        return response()->json([
+            'message' => 'Success'
+        ], 200); 
     }
 
     public function leaderData()
     {
-        // $leader = Leader::all();
-        // return \DataTables::of($leader)
-        //     ->addColumn('action', function ($leader) {
-        //         $deleteButton = ' <form action="leader/'.$leader->id.'" method="POST">
-        //                             <input type="hidden" name="_method" value="delete">
-        //                             <input type="hidden" name="_token" value="'.csrf_token().'">
-        //                             <input type="submit" class="btn btn-sm btn-danger" value="Delete">
-        //                             </form>';
-        //         return '<a href="leader/edit/' . $leader->id . '" class="btn btn-sm btn-primary">Edit</a>'.$deleteButton;
-        //     })
-        //     ->make(true);
         $leader = DB::table('leaders')->get();
         return  response()->json($leader);
     }
@@ -82,7 +73,7 @@ class LeaderController extends Controller
         ->leftJoin('cellgroups as network','network.id','=','leaders.network')
         ->leftJoin('cellgroups as cg','cg.id' ,'=','leaders.cell_group')
         ->select('leaders.*','network.name as network','cg.name as cell_group')
-        ->paginate();
+        ->paginate(10);
         return $leaders;
 
     }
@@ -101,7 +92,6 @@ class LeaderController extends Controller
     {
         $this->validate($request, [
             "first_name" => 'required',
-            'middle_name'=>'exist:leader',
             "last_name" => 'required',
             "gender" => 'required',
             "birth_date" => 'required|date',
@@ -125,14 +115,19 @@ class LeaderController extends Controller
         $leader->birth_date = $request->birth_date;
         $leader->first_attend = $request->first_attend;
         $leader->save();
-        return redirect()->route('leader');
+        return response()->json([
+            'message' => 'Success'
+        ], 200); 
 
     }
 
     public function delete(Leader $leader)
     {
         $leader->delete();
-        return redirect()->route('leader');
+         return response()->json([
+            'message' => 'Success'
+        ], 200); 
+
     }
 
     public function show(Leader $leader) 
