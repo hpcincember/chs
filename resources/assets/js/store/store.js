@@ -4,6 +4,7 @@ import counter from './modules/counter';
 import general from './modules/general';
 import network from './modules/network';
 import leader from './modules/leader';
+import attendance from './modules/attendance'
 import * as actions from './action'
 Vue.use(Vuex)
 
@@ -13,6 +14,7 @@ export const store = new Vuex.Store({
 	   counter,
 	   general,
 	   network,
-	   leader	
+	   leader,
+	   attendance	
 	}
 }); 

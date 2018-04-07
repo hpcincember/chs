@@ -25,7 +25,7 @@
 							      V
 							    </button>
 							    <button class="btn btn-info btn-xs"
-							      @click="onAction('edit-item', props.rowData, props.rowIndex),$v.leaders.$reset()">
+							      @click="onAction('edit-item', props.rowData, props.rowIndex)">
 							      E
 							    </button>
 							    <button class="btn btn-danger btn-xs"
@@ -58,7 +58,7 @@
 				  <tr>
 				  		<td>Gender</td>
 				   		<td>
-							Gender: {{ leaders.gender }}
+							 {{ leaders.gender }}
 				   		</td>
 				  </tr>		            
 			  	  <tr>
@@ -131,21 +131,25 @@
 			   <tbody>
 			      <tr>  
 			            <td>
-							<div class="form-group" :class="{invalid:$v.leaders.first_name.$error}">
+							<div class="form-group">
 								<label>First Name</label>
-								<input type="text" name="" class="form-control" v-model="leaders.first_name" placeholder="First Name" @blur="$v.leaders.first_name.$touch()">
+								<input type="text" name="" class="form-control" v-model="leaders.first_name" placeholder="First Name">
+								<span class="text-danger">{{ getErrorByKey("first_name")}}</span>
 							</div>
 			            </td>
 			            <td>
-							<div class="form-group" :class="{invalid:$v.leaders.middle_name.$error}">
+							<div class="form-group">
 								<label>Middle Name</label>
-								<input type="text" name="" class="form-control" v-model="leaders.middle_name" placeholder="Middle Name" @blur="$v.leaders.middle_name.$touch()">
+								<input type="text" name="" class="form-control" v-model="leaders.middle_name" placeholder="Middle Name">
+								<span class="text-danger">{{ getErrorByKey("middle_name")}}</span>
 							</div>
 			            </td>
 			            <td>
-							<div class="form-group" :class="{invalid:$v.leaders.last_name.$error}">
+							<div class="form-group">
 								<label>Last Name</label>
-								<input type="text" name="" class="form-control" v-model="leaders.last_name" placeholder="Last Name" @blur="$v.leaders.last_name.$touch()">
+								<input type="text" name="" class="form-control" v-model="leaders.last_name" placeholder="Last Name">
+								<span class="text-danger">{{ getErrorByKey("last_name")}}</span>
+
 							</div>
 			            </td>
 				   </tr>
@@ -154,6 +158,7 @@
 							<div class="form-group">
 								<label>Suffix</label>
 								<input type="text" name="" class="form-control" v-model="leaders.suffix" placeholder="Suffix">
+								<span class="text-danger">{{ getErrorByKey("suffix")}}</span>
 							</div>
 				   			
 				   		</td>
@@ -164,6 +169,7 @@
 								<select class="form-control" v-model="leaders.gender">
 									<option :value="key" v-for="(gender,key) in genders">{{ gender }}</option>
 								</select>
+								<span class="text-danger">{{ getErrorByKey("gender")}}</span>
 							</div>
 				   		</td>
 					</tr>
@@ -173,6 +179,7 @@
 							<div class="form-group">
 								<label>School</label>
 								<input type="text" name="" class="form-control" v-model="leaders.school" placeholder="School">
+								<span class="text-danger">{{ getErrorByKey("school")}}</span>
 							</div>
 						</td>
 
@@ -180,6 +187,7 @@
 							<div class="form-group">
 								<label>Work Place</label>
 								<input type="text" name="" class="form-control" v-model="leaders.work_place" placeholder="Work Place">
+								<span class="text-danger">{{ getErrorByKey("work_place")}}</span>
 							</div>
 						</td>
 					</tr>
@@ -189,6 +197,7 @@
 							<div class="form-group">
 								<label>Contact Number</label>
 								<input type="number" name="" class="form-control" v-model="leaders.contact_number" placeholder="Contact Number">
+								<span class="text-danger">{{ getErrorByKey("contact_number")}}</span>
 							</div>
 						</td>
 
@@ -196,33 +205,37 @@
 							<div class="form-group">
 								<label>Facebook Account</label>
 								<input type="text" name="" class="form-control" v-model="leaders.fb_account" placeholder="Facebook Account">
+								<span class="text-danger">{{ getErrorByKey("fb_account")}}</span>
 							</div>
 						</td>
 
 						<td>
-							<div class="form-group" :class="{invalid:$v.leaders.email_address.$error}">
+							<div class="form-group">
 								<label>Email Address</label>
-								<input type="text" name="" class="form-control" @blur="$v.leaders.email_address.$touch()" v-model="leaders.email_address" placeholder="Email" >
+								<input type="text" name="" class="form-control" v-model="leaders.email_address" placeholder="Email" >
+								<span class="text-danger">{{ getErrorByKey("email_address")}}</span>
 							</div>
 						</td>
 
 					</tr>
 					<tr>
 						<td>
-							<div class="form-group" :class="{invalid:$v.leaders.level.$error}">
+							<div class="form-group">
 								<label>Levels</label>
-								<select class="form-control" v-model="leaders.level" @change="$v.leaders.level.$touch()">
+								<select class="form-control" v-model="leaders.level" >
 									<option :value="key" v-for="(level,key) in levels">{{ level }}</option>
 								</select>
+								<span class="text-danger">{{ getErrorByKey("level")}}</span>
 							</div>
 						</td>	
 
 						<td>
-							<div class="form-group" :class="{invalid:$v.leaders.network.$error}">
+							<div class="form-group">
 								<label>Network</label>
-								<select class="form-control" v-model="leaders.network" @change="$v.leaders.network.$touch()">
+								<select class="form-control" v-model="leaders.network">
 									<option :value="network.id" v-for="(network,key) in networks">{{ network.name }}</option>
 								</select>
+								<span class="text-danger">{{ getErrorByKey("network")}}</span>
 							</div>
 						</td>	
 
@@ -232,6 +245,7 @@
 								<select class="form-control" v-model="leaders.cell_group">
 									<option :value="cellgroup.id" v-for="(cellgroup,key) in cellgroups">{{ cellgroup.name }}</option>
 								</select>
+								<span class="text-danger">{{ getErrorByKey("cell_group")}}</span>
 							</div>
 						</td>				
 				  </tr>
@@ -240,6 +254,7 @@
 							<div class="form-group">
 								<label>Birthdate</label>
 								<input type="date" name="" class="form-control" v-model="leaders.birth_date" placeholder="Birthdate">
+								<span class="text-danger">{{ getErrorByKey("birth_date")}}</span>
 							</div>
 						</td>
 
@@ -247,6 +262,7 @@
 							<div class="form-group">
 								<label>First Attend</label>
 								<input type="date" name="" class="form-control" v-model="leaders.first_attend" placeholder="First Attend">
+								<span class="text-danger">{{ getErrorByKey("first_attend")}}</span>
 							</div>
 						</td>
 				  </tr>
@@ -262,8 +278,8 @@
 			  </table>
 		</sweet-modal>
 
-		<sweet-modal icon="warning" ref="deleteLeader">
-			Are you sure you want to delete this item?
+		<sweet-modal icon="warning" ref="deleteLeader" modal-theme="dark" overlay-theme="dark">
+			Are you sure you want to deactivate this item?
 			<br>
 			<div class="pull-right">
 				<button class="btn btn-primary" @click="deleteLeader">Yes</button>
@@ -350,43 +366,9 @@ export default {
       email:''
   	}
   },
-  validations:{
-  	leaders : {
-  		first_name: {
-  			required
-  		},
-  		middle_name: {
-  			required
-  		},
-  		last_name: {
-  			required
-  		},
-  		gender: {
-  			required
-  		},
-	  	email_address: {
-	  	  	email
-	  	},
-	  	level:{
-	  		required
-	  	},
-	  	network:{
-			required
-	  	},
-	  	cell_group:{
-	  		required
-	  	},
-	  	birth_date: {
-	  		required
-	  	},
-	  	first_attend: {
-	  		required
-	  	}
-  	}
-  },
   computed:{
   	...mapGetters({
-  		levels:'getLevels',genders:'getGenders',networks:'getNetworks',cellgroups:'getCellGroups'
+  		levels:'getLevels',genders:'getGenders',networks:'getNetworks',cellgroups:'getCellGroups',errors:'getErrors'
   	})
   	
   },
@@ -419,7 +401,8 @@ export default {
      },
      editItem(data){
       this.leaders = data;
-	  this.isAdd = false;      
+	  this.isAdd = false;  
+	  this.clearErrors();    
       this.$refs.modalLeader.open();
      },
      formatGender(gender){
@@ -452,7 +435,7 @@ export default {
      	this.$store.dispatch("updateLeader",this.$data.leaders)
      	.then(response => {
             this.$refs.vuetable.reload();
-            this.$refs.modalLeader.close();
+            // this.$refs.modalLeader.close();
         }, error => {
         })
      },
@@ -460,25 +443,37 @@ export default {
      	this.$store.dispatch("addLeader",this.$data.leaders)
      	.then(response => {
      		this.$refs.vuetable.reload();
-     		this.$refs.modalLeader.close();
+
+     		// this.$refs.modalLeader.close();
      	},error => {
 
      	})
      },
      showAddModal(){
+     	this.clearErrors();
      	this.isAdd = true
-     	this.$refs.modalLeader.open()
+        this.$refs.modalLeader.open()
      },
      deleteLeader(){
+     	this.clearErrors()
      	this.$store.dispatch("deleteLeader",this.leaders)
      	.then((response => {
      		this.$refs.vuetable.reload();
      		this.$refs.deleteLeader.close();
+     		this.leaders = []
      	}))
      	.catch((error => console.log(error)))
      },
      deleteModalClose(){
      	this.$refs.deleteLeader.close();
+     },
+     getErrorByKey(field){
+     	if(this.errors[field]) {
+     		return this.errors[field][0]
+     	}
+     },
+     clearErrors(){
+     	this.$store.dispatch("clearErrors");
      }
   }
 }

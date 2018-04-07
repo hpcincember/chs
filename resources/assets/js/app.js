@@ -28,6 +28,8 @@ Vue.use(Vuelidate);
  */
 Vue.component('sample', require('./components/sample/Sample.vue'));
 Vue.component('leader',require('./components/leader/Leader.vue'));
+Vue.component('cellgroup',require('./components/cellgroup/Cellgroup.vue'));
+Vue.component('attendance',require('./components/attendance/Attendance.vue'));
 Vue.component('role',require('./components/role/Role.vue'));
 Vue.component('vtable',require('./components/Table.vue'));
 

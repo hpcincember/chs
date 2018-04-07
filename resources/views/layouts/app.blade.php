@@ -40,8 +40,18 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
+                        @if(Auth::check())
+                         <li class="nav-item">
+                            <a class="nav-link" href="/leaders">Leaders</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="/cellgroups">Cell Groups</a>
+                          </li>
+                           <li class="nav-item">
+                            <a class="nav-link" href="/attendance">Attendance</a>
+                          </li>
+                          @endif
+                    </ul> 
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">

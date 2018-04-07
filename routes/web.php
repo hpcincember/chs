@@ -52,4 +52,18 @@ Route::post('/module','ModuleController@store');
 
 
 Route::get('/networks','CellGroupController@getNetworks');
-Route::get('/cellgroups','CellGroupController@getCellGroups');
+
+
+
+Route::get('/cellgroup-data','CellGroupController@getCellGroups');
+Route::get('/cellgroup-page-data','CellGroupController@getCellGroupsPageData');
+Route::get('/cellgroups','CellGroupController@index');
+Route::get('/cellgroup/belongs-to-network/{network_id}','CellGroupController@getBelongsToNetwork');
+Route::patch('/cellgroup/{cellgroup}','CellGroupController@update');
+Route::post('/cellgroup','CellGroupController@store');
+Route::delete('cellgroup/{cellgroup}','CellGroupController@delete');
+
+
+Route::get('/attendance-sundays','AttendanceController@getSundays');
+Route::get('/attendance','AttendanceController@index');
+Route::get('/attendance-leaders','AttendanceController@getLeaderAttendance');

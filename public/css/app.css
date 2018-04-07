@@ -7720,3 +7720,7 @@ button.close {
     display: none !important;
   }
 }
+
+h1 {
+  color: red;
+}

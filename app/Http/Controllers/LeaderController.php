@@ -31,12 +31,16 @@ class LeaderController extends Controller
     {
         $this->validate($request, [
             "first_name" => 'required',
+            "middle_name" => 'required',
             "last_name" => 'required',
             "gender" => 'required',
             "birth_date" => 'required|date',
             "contact_number" => 'required|max:11',
             "network" => 'required|numeric',
+            "cell_group" => 'required|numeric',
             "level" => 'required|numeric',
+            "birth_date" => 'required',
+            "first_attend" => 'required',
         ]);
         $leader = new Leader();
         $leader->first_name = $request->first_name;
@@ -92,12 +96,16 @@ class LeaderController extends Controller
     {
         $this->validate($request, [
             "first_name" => 'required',
+            "middle_name" => 'required',
             "last_name" => 'required',
             "gender" => 'required',
             "birth_date" => 'required|date',
             "contact_number" => 'required|max:11',
             "network" => 'required|numeric',
+            "cell_group" => 'required|numeric',
             "level" => 'required|numeric',
+            "birth_date" => 'required',
+            "first_attend" => 'required',
         ]);
 
         $leader->first_name = $request->first_name;
