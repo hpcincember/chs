@@ -37,4 +37,15 @@ class Attendance extends Model
 
 	}
 
+	public function findAttendanceInPage()
+	{	
+		return DB::table('leaders as l')
+		->select('l.first_name','l.last_name',DB::raw('group_concat(attendance_date) as attendance'))
+		->leftJoin('attendances as a','l.id','=','a.leader_id')
+		->groupBy('l.id','l.first_name','l.last_name')
+		->paginate(10);
+
+
+	}
+
 }

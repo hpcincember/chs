@@ -32,5 +32,11 @@ class AttendanceController extends Controller
     	$attendance = new Attendance;
     	return $attendance->getAttendance();
     }
+
+    public function getLeaderAttendancePageData()
+    {
+        $attendance = new Attendance;
+        return $attendance->findAttendanceInPage();
+    }
 }
 	

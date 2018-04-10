@@ -74017,16 +74017,34 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+	data: function data() {
+		return {
+			form: {
+				leader: ''
+			}
+		};
+	},
+
 	computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["c" /* mapGetters */])({
 		sundays: 'getSundaysPerMonth',
-		leaderAttendance: 'getLeadersAttendance'
+		leaderAttendance: 'getLeadersAttendance',
+		leaders: 'getLeaders'
 	})),
 	created: function created() {
 		this.$store.dispatch("getSundaysPerMonth");
 		this.$store.dispatch("getLeadersAttendance");
+		this.$store.dispatch("setLeaders");
 	},
 
 	methods: {
@@ -74036,11 +74054,11 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 		formatSundayForFunction: function formatSundayForFunction(date) {
 			return moment(date).format('YYYY-MM-DD');
 		},
-		isPresent: function isPresent(date, sunday) {
-			if (date) {
-				var res = date.split(',');
-				return res.indexOf(this.formatSundayForFunction(sunday));
+		split: function split(dates) {
+			if (dates) {
+				return dates.split(",");
 			}
+			return "";
 		}
 	}
 });
@@ -74056,20 +74074,64 @@ var render = function() {
   return _c("div", { staticClass: "container" }, [
     _c("h1", [_vm._v("Attendance")]),
     _vm._v(" "),
-    _c("table", { staticClass: "table table-bordered" }, [
-      _c(
-        "tr",
-        [
-          _c("th", [_vm._v("Leader")]),
-          _vm._v(" "),
-          _vm._l(_vm.sundays, function(sunday) {
-            return _c("th", [
-              _vm._v(_vm._s(_vm.formatSundayForFunction(sunday.date)))
+    _c("div", { staticClass: "col-lg-4" }, [
+      _c("div", { staticClass: "form-group" }, [
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.form.leader,
+                expression: "form.leader"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { name: "", id: "" },
+            on: {
+              change: function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.$set(
+                  _vm.form,
+                  "leader",
+                  $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                )
+              }
+            }
+          },
+          _vm._l(_vm.leaders, function(leader) {
+            return _c("option", { attrs: { value: "" } }, [
+              _vm._v(_vm._s(leader.first_name) + " " + _vm._s(leader.last_name))
             ])
           })
-        ],
-        2
-      ),
+        )
+      ])
+    ]),
+    _vm._v(" "),
+    _c("table", { staticClass: "table table-bordered" }, [
+      _c("thead", [
+        _c(
+          "tr",
+          [
+            _c("th", [_vm._v("Leader")]),
+            _vm._v(" "),
+            _vm._l(_vm.sundays, function(sunday) {
+              return _c("th", [
+                _vm._v(_vm._s(_vm.formatSundayForFunction(sunday.date)))
+              ])
+            })
+          ],
+          2
+        )
+      ]),
       _vm._v(" "),
       _c(
         "tbody",
@@ -74079,18 +74141,35 @@ var render = function() {
             [
               _c("td", [
                 _vm._v(
-                  _vm._s(leader.first_name) +
-                    " " +
-                    _vm._s(leader.last_name) +
-                    " " +
-                    _vm._s(leader.attendance)
+                  _vm._s(leader.first_name) + " " + _vm._s(leader.last_name)
                 )
               ]),
               _vm._v(" "),
               _vm._l(_vm.sundays, function(sunday) {
-                return _c("td", [
-                  _vm._v(_vm._s(_vm.isPresent(leader.attendance, sunday)))
-                ])
+                return _c(
+                  "td",
+                  {
+                    class: [
+                      _vm
+                        .split(leader.attendance)
+                        .indexOf(_vm.formatSundayForFunction(sunday.date)) > -1
+                        ? "success"
+                        : "danger"
+                    ]
+                  },
+                  [
+                    _vm._v(
+                      _vm._s(
+                        _vm
+                          .split(leader.attendance)
+                          .indexOf(_vm.formatSundayForFunction(sunday.date)) >
+                        -1
+                          ? "Present"
+                          : "Absent"
+                      )
+                    )
+                  ]
+                )
               })
             ],
             2
