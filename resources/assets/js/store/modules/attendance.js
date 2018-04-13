@@ -1,6 +1,7 @@
 const state = {
 	sundays:[],
-	leaderAttendance:[]
+	leaderAttendance:[],
+	pagination:[]
 
 }
 
@@ -10,6 +11,9 @@ const getters = {
 	},
 	getLeadersAttendance(){
 		return state.leaderAttendance
+	},
+	getPagination(){
+		return state.pagination
 	}
 }
 const mutations = {
@@ -18,6 +22,9 @@ const mutations = {
 	},
 	SET_LEADERS_ATTENDANCE(state,leaderAttendance){
 		state.leaderAttendance = leaderAttendance
+	},
+	SET_PAGINATION(state,pagination){
+		state.pagination = pagination
 	}
 }
 const actions = {
@@ -30,10 +37,11 @@ const actions = {
 			console.log(error)
 		})
 	},
-	getLeadersAttendance({commit}){
-		axios.get('/attendance-leaders').
+	getLeadersAttendance({commit},url){
+		axios.get(url).
 		then(response => {
-			commit('SET_LEADERS_ATTENDANCE',response.data)
+			commit('SET_LEADERS_ATTENDANCE',response.data.data)
+			commit('SET_PAGINATION',response.data)
 		})
 		.catch(error => {
 			console.log(error.response.data);

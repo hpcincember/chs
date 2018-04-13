@@ -34844,7 +34844,8 @@ var actions = {
 "use strict";
 var state = {
 	sundays: [],
-	leaderAttendance: []
+	leaderAttendance: [],
+	pagination: []
 
 };
 
@@ -34854,6 +34855,9 @@ var getters = {
 	},
 	getLeadersAttendance: function getLeadersAttendance() {
 		return state.leaderAttendance;
+	},
+	getPagination: function getPagination() {
+		return state.pagination;
 	}
 };
 var mutations = {
@@ -34862,6 +34866,9 @@ var mutations = {
 	},
 	SET_LEADERS_ATTENDANCE: function SET_LEADERS_ATTENDANCE(state, leaderAttendance) {
 		state.leaderAttendance = leaderAttendance;
+	},
+	SET_PAGINATION: function SET_PAGINATION(state, pagination) {
+		state.pagination = pagination;
 	}
 };
 var actions = {
@@ -34874,11 +34881,12 @@ var actions = {
 			console.log(error);
 		});
 	},
-	getLeadersAttendance: function getLeadersAttendance(_ref2) {
+	getLeadersAttendance: function getLeadersAttendance(_ref2, url) {
 		var commit = _ref2.commit;
 
-		axios.get('/attendance-leaders').then(function (response) {
-			commit('SET_LEADERS_ATTENDANCE', response.data);
+		axios.get(url).then(function (response) {
+			commit('SET_LEADERS_ATTENDANCE', response.data.data);
+			commit('SET_PAGINATION', response.data);
 		}).catch(function (error) {
 			console.log(error.response.data);
 		});
@@ -74025,6 +74033,11 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -74039,11 +74052,12 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 	computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["c" /* mapGetters */])({
 		sundays: 'getSundaysPerMonth',
 		leaderAttendance: 'getLeadersAttendance',
-		leaders: 'getLeaders'
+		leaders: 'getLeaders',
+		pagination: 'getPagination'
 	})),
 	created: function created() {
 		this.$store.dispatch("getSundaysPerMonth");
-		this.$store.dispatch("getLeadersAttendance");
+		this.$store.dispatch("getLeadersAttendance", '/attendance-leaders-page-data');
 		this.$store.dispatch("setLeaders");
 	},
 
@@ -74059,6 +74073,29 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 				return dates.split(",");
 			}
 			return "";
+		},
+
+		// makePagination(){
+		// 	let data = this.pagination
+		// 	let pagination = {
+		// 		current_page: data.current_page,
+		// 		last_page: data.last_page,
+		// 		next_page_url: data.next_page_url,
+		// 		prev_page_url: data.prev_page_url,
+
+		// 	}
+
+		// 	this.pagination = pagination
+		// },
+		fetchPagination: function fetchPagination(url) {
+			this.$store.dispatch("getLeadersAttendance", url);
+		},
+		checkIfEmpty: function checkIfEmpty(url) {
+			console.log(this.current_page);
+			if (url === null) {
+				return true;
+			}
+			return false;
 		}
 	}
 });
@@ -74175,6 +74212,45 @@ var render = function() {
             2
           )
         })
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "pagination" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary",
+          attrs: { disabled: !_vm.pagination.prev_page_url },
+          on: {
+            click: function($event) {
+              _vm.fetchPagination(_vm.pagination.prev_page_url)
+            }
+          }
+        },
+        [_vm._v("Previous")]
+      ),
+      _vm._v(" "),
+      _c("span", [
+        _vm._v(
+          "Page " +
+            _vm._s(_vm.pagination.current_page) +
+            " of " +
+            _vm._s(_vm.pagination.last_page)
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary",
+          attrs: { disabled: !_vm.pagination.next_page_url },
+          on: {
+            click: function($event) {
+              _vm.fetchPagination(_vm.pagination.next_page_url)
+            }
+          }
+        },
+        [_vm._v("Next")]
       )
     ])
   ])
