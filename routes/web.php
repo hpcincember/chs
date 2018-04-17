@@ -68,3 +68,6 @@ Route::get('/attendance-sundays','AttendanceController@getSundays');
 Route::get('/attendance','AttendanceController@index');
 Route::get('/attendance-leaders','AttendanceController@getLeaderAttendance');
 Route::get('/attendance-leaders-page-data','AttendanceController@getLeaderAttendancePageData');
+
+Route::get('/attendance-search','AttendanceController@search');
+Route::get('/attendance-searchByNetwork','AttendanceController@searchByNetwork');

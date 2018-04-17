@@ -46,6 +46,26 @@ const actions = {
 		.catch(error => {
 			console.log(error.response.data);
 		})
+	},
+	searchLeadersAttendance({commit},keywords){
+		axios.get('/attendance-search', { params: { keywords:keywords } })
+        .then(response => {
+			commit('SET_LEADERS_ATTENDANCE',response.data.data)
+			commit('SET_PAGINATION',response.data)
+		})
+		.catch(error => {
+			console.log(error.response.data);
+		})
+	},
+	searchLeadersAttendanceByNetwork({commit},keywords){
+		axios.get('/attendance-searchByNetwork', { params: { keywords:keywords } })
+        .then(response => {
+			commit('SET_LEADERS_ATTENDANCE',response.data.data)
+			commit('SET_PAGINATION',response.data)
+		})
+		.catch(error => {
+			console.log(error.response.data);
+		})
 	}
 }
 

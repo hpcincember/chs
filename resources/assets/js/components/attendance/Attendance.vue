@@ -1,17 +1,23 @@
 <template>
 	<div class="container">
 		<h1>Attendance</h1>
-		<div class="col-lg-4">
-			<div class="form-group">
-				<select name="" id="" class="form-control" v-model="form.leader"> 
-					<option value="" v-for="leader in leaders">{{ leader.first_name}} {{ leader.last_name }}</option>
+		<div>
+			<div class="form-group col-lg-4">
+				<label>Search Leader</label>
+				<input type="text" v-model.lazy="keywords"  class="form-control" v-on:keyup.enter="pressEnter" placeholder="">
+			
+			</div>
+			<div class="form-group col-lg-4">
+					<label>Filter by Network:</label>
+					<select class="form-control" v-model="network">
+					<option :value="network.id" v-for="network in networks">{{network.name}}</option>
 				</select>
 			</div>
 		</div>
 		<table class="table table-bordered">
 			<thead>
 				<tr>
-					<th>Leader</th>
+					<th @click="sortLeaders">Leader</th>
 					<th v-for="sunday in sundays">{{ formatSundayForFunction(sunday.date) }}</th>
 				</tr>
 			</thead>
@@ -39,6 +45,8 @@
 				form: {
 					leader:''
 				},
+				keywords:'',
+				network:''
 			}
 		},
 		computed:{
@@ -46,14 +54,24 @@
 				sundays:'getSundaysPerMonth',
 				leaderAttendance:'getLeadersAttendance',
 				leaders:'getLeaders',
-				pagination:'getPagination'
+				pagination:'getPagination',
+				networks:'getNetworks'
 			}),
 
 		},
+		watch: {
+	        keywords(after, before) {
+	            this.pressEnter();
+	        },
+	        network(after, before) {
+	            this.searchByNetwork();
+	        }
+	    },	
 		created(){
 			this.$store.dispatch("getSundaysPerMonth")
 			this.$store.dispatch("getLeadersAttendance",'/attendance-leaders-page-data')
 			this.$store.dispatch("setLeaders")
+			this.$store.dispatch("setNetwork")
 
 		},
 		methods:{
@@ -90,6 +108,15 @@
             		return true
             	}
             	return false
+            },
+            pressEnter(){
+            	this.$store.dispatch("searchLeadersAttendance",this.keywords)
+            },
+            sortLeaders(){
+            	alert("sort leaders name");
+            },
+            searchByNetwork(){
+            	this.$store.dispatch("searchLeadersAttendanceByNetwork",this.network)
             }
 		}
 	}
