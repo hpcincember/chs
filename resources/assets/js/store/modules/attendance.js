@@ -1,7 +1,8 @@
 const state = {
 	sundays:[],
 	leaderAttendance:[],
-	pagination:[]
+	pagination:[],
+	leadersBelongsToNetwork:[]
 
 }
 
@@ -14,6 +15,9 @@ const getters = {
 	},
 	getPagination(){
 		return state.pagination
+	},
+	getLeadersBelongstoNetwork(){
+		return state.leadersBelongsToNetwork
 	}
 }
 const mutations = {
@@ -25,6 +29,9 @@ const mutations = {
 	},
 	SET_PAGINATION(state,pagination){
 		state.pagination = pagination
+	},
+	SET_LEADER_BELONGS_TO_NETWORK(state,leadersBelongsToNetwork){
+		state.leadersBelongsToNetwork = leadersBelongsToNetwork
 	}
 }
 const actions = {
@@ -60,8 +67,7 @@ const actions = {
 	searchLeadersAttendanceByNetwork({commit},keywords){
 		axios.get('/attendance-searchByNetwork', { params: { keywords:keywords } })
         .then(response => {
-			commit('SET_LEADERS_ATTENDANCE',response.data.data)
-			commit('SET_PAGINATION',response.data)
+			commit('SET_LEADER_BELONGS_TO_NETWORK',response.data)
 		})
 		.catch(error => {
 			console.log(error.response.data);
