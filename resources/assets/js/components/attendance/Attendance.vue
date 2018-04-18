@@ -1,18 +1,18 @@
 <template>
 	<div class="container">
 		<h1>Attendance</h1>
+		<input type="button" value="Create" class="btn btn-primary" @click="showCreate()">
 		<div>
-			<div class="form-group col-lg-4">
-				<label>Search Leader</label>
-				<input type="text" v-model.lazy="keywords"  class="form-control" v-on:keyup.enter="pressEnter" placeholder="">
+			<div class="form-group">
+				<input type="text" v-model.lazy="keywords"  class="form-control" v-on:keyup.enter="pressEnter" placeholder="Search here..">
 			
 			</div>
-			<div class="form-group col-lg-4">
+			<!-- <div class="form-group col-lg-4">
 					<label>Filter by Network:</label>
 					<select class="form-control" v-model="network">
 					<option :value="network.id" v-for="network in networks">{{network.name}}</option>
 				</select>
-			</div>
+			</div> -->
 		</div>
 		<table class="table table-bordered">
 			<thead>
@@ -34,12 +34,17 @@
 			<span>Page {{ pagination.current_page  }} of {{ pagination.last_page }}</span>
 			<button class="btn btn-primary" @click="fetchPagination(pagination.next_page_url)" :disabled="!pagination.next_page_url">Next</button>
 		</div>
+		<create></create>
 	</div>
 </template>
 
 <script>
 	import {mapGetters} from 'vuex'
+	import Create from './Create'
 	export default{
+		components:{
+			Create
+		},
 		data(){
 			return {
 				form: {
@@ -87,18 +92,6 @@
               }
               return "";
             },
-            // makePagination(){
-            // 	let data = this.pagination
-            // 	let pagination = {
-            // 		current_page: data.current_page,
-            // 		last_page: data.last_page,
-            // 		next_page_url: data.next_page_url,
-            // 		prev_page_url: data.prev_page_url,
-
-            // 	}
-
-            // 	this.pagination = pagination
-            // },
             fetchPagination(url){
             	this.$store.dispatch("getLeadersAttendance",url)
             },
@@ -117,6 +110,9 @@
             },
             searchByNetwork(){
             	this.$store.dispatch("searchLeadersAttendanceByNetwork",this.network)
+            },
+            showCreate(){
+            	this.$emit("modal")
             }
 		}
 	}

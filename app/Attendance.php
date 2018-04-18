@@ -44,18 +44,20 @@ class Attendance extends Model
 		->select('l.first_name','l.last_name',DB::raw('group_concat(attendance_date) as attendance'))
 		->leftJoin('attendances as a','l.id','=','a.leader_id')
 		->groupBy('l.id','l.first_name','l.last_name')
-		->paginate(10);
+		->paginate(20);
 	}
 
 	public function findAttendaceByKeyword($keywords)
 	{
 		return DB::table('leaders as l')
-		->select('l.first_name','l.last_name',DB::raw('group_concat(attendance_date) as attendance'))
+		->select('nw.name','l.first_name','l.last_name',DB::raw('group_concat(attendance_date) as attendance'))
 		->leftJoin('attendances as a','l.id','=','a.leader_id')
+	    ->leftJoin('cellgroups as nw','l.network','=','nw.id')
 	    ->where('l.first_name', 'like', '%' . $keywords . '%')
 	    ->orWhere('l.last_name', 'like', '%' . $keywords . '%')
-		->groupBy('l.id','l.first_name','l.last_name')
-		->paginate(10);
+	    ->orWhere('nw.name', 'like', '%' . $keywords . '%')
+		->groupBy('l.id','l.first_name','l.last_name','name')
+		->paginate(20);
 	}
 
 	public function findAttendaceByNetwork($network_id)

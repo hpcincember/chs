@@ -38,7 +38,9 @@ class Cellgroup extends Model
 
     public function findBelongsToNetwork($network_id)
     {
-    	return DB::table('cellgroups')
+    	return DB::table('cellgroups as c')
+                ->select('l.id','l.first_name','l.last_name')
+                ->leftJoin('leaders as l','c.leader_id','=','l.id')
                 ->where([
                     ['network_id','=',$network_id],
                     ['status','=',self::STATUS_ACTIVE]

@@ -46,7 +46,7 @@ class AttendanceController extends Controller
         $result = $model->findAttendaceByKeyword($request->keywords);
 
 
-        return response()->json($result);
+        return $result;
     }
 
     public function searchByNetwork(Request $request)
